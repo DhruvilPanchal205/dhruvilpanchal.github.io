@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Dhruvil Panchal Portfolio</title>
+  <title>Dhruvil Panchal - Data Engineer Portfolio</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -26,11 +26,36 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  
+  <style>
+    .data-engineering-bg {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+    }
+    .tech-icon {
+      font-size: 2rem;
+      margin-right: 10px;
+      color: #4fc3f7;
+    }
+    .skill-badge {
+      background-color: #2c5364;
+      color: white;
+      margin: 5px;
+    }
+    .project-card {
+      transition: transform 0.3s;
+      border: 1px solid #2c5364;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
 
 <body class="index-page">
 
-  <header id="header" class="header dark-background d-flex flex-column">
+  <header id="header" class="header data-engineering-bg d-flex flex-column">
     <i class="header-toggle d-xl-none bi bi-list"></i>
 
     <div class="profile-img">
@@ -38,8 +63,6 @@
     </div>
 
     <a href="index.html" class="logo d-flex align-items-center justify-content-center">
-      <!-- Uncomment the line below if you also wish to use an image logo -->
-      <!-- <img src="assets/img/logo.png" alt=""> -->
       <h1 class="sitename">Dhruvil Panchal</h1>
     </a>
 
@@ -49,438 +72,384 @@
     </div>
 
     <nav id="navmenu" class="navmenu">
-  <ul>
-    <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i> Home</a></li>
-    <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
-    <li><a href="#projects"><i class="bi bi-briefcase navicon"></i> Projects</a></li> <!-- New Projects Section -->
-    <li><a href="#skills"><i class="bi bi-lightbulb navicon"></i> Skills</a></li> <!-- New Skills Section -->
-    <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
-    <li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
-  </ul>
-</nav>
-
-
+      <ul>
+        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i> Home</a></li>
+        <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
+        <li><a href="#skills"><i class="bi bi-gear navicon"></i> Skills</a></li>
+        <li><a href="#projects"><i class="bi bi-code-square navicon"></i> Projects</a></li>
+        <li><a href="#experience"><i class="bi bi-briefcase navicon"></i> Experience</a></li>
+        <li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main class="main">
 
     <!-- Hero Section -->
-    <section id="hero" class="hero section dark-background">
-
-      <img src="assets/img/12.jpg" alt="" data-aos="fade-in" class="">
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <h2>Dhruvil Panchal</h2>
-        <p>I'm a <span class="typed" data-typed-items="Business/Data Analyst">Analyst</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+    <section id="hero" class="hero section data-engineering-bg">
+      <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
+        <h1>Dhruvil Panchal</h1>
+        <p class="typed-container">
+          I'm a <span class="typed" data-typed-items="Data Engineer, ETL Specialist, Cloud Data Architect, Data Pipeline Developer"></span>
+          <span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span>
+        </p>
+        <div class="mt-4">
+          <span class="tech-icon"><i class="bi bi-database"></i></span>
+          <span class="tech-icon"><i class="bi bi-cloud"></i></span>
+          <span class="tech-icon"><i class="bi bi-diagram-3"></i></span>
+          <span class="tech-icon"><i class="bi bi-graph-up"></i></span>
+        </div>
       </div>
-
     </section><!-- /Hero Section -->
 
     <!-- About Section -->
     <section id="about" class="about section">
-
-      <!-- Section Title -->
-      <style>
-        .skills-content ul {
-            list-style: none; /* Removes the black bullets */
-            padding: 0; /* Removes the default padding */
-        }
-    </style>
       <div class="container section-title" data-aos="fade-up">
-        <h2>About</h2>
-        <p>I am a proactive Business Analyst and IT Consultant dedicated to driving business improvements and delivering innovative solutions. I excel at analyzing complex problems, developing effective processes, and providing actionable insights that inform strategic decision-making. With a strong track record of enhancing operational efficiency and fostering client relationships, I am committed to adding significant value to every project I undertake.</p>
-      </div><!-- End Section Title -->
+        <h2>About Me</h2>
+        <p>Data Engineer with expertise in building scalable data pipelines, optimizing ETL processes, and implementing cloud-based data solutions. Passionate about transforming raw data into valuable insights through robust architectures.</p>
+      </div>
+
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4">
           <div class="col-lg-12 content">
             <div class="row">
               <div class="col-lg-6">
                 <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.example.com</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.dhruvilpanchal.com</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+1-407-494-1791</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Location:</strong>Open to reclocate<span></span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Location:</strong> <span>Open to relocate</span></li>
                 </ul>
               </div>
               <div class="col-lg-6">
                 <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Masters in Information Systems(MIS)</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Masters in Information Systems</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>dpanchal.dp.2005@gmail.com</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Job Type:</strong> <span>Full-time, Contract</span></li>
                 </ul>
               </div>
             </div>
-            <div class="container my-5">
-              <h3>What I Can Bring to the Table:</h3>
-              <ul>
-                  <li><i class="bi bi-check2"></i> Expertise in analyzing and optimizing business processes.</li>
-                  <li><i class="bi bi-check2"></i> Proven ability to deliver data-driven insights and strategic recommendations.</li>
-                  <li><i class="bi bi-check2"></i> Strong experience in project management and stakeholder communication.</li>
-                  <li><i class="bi bi-check2"></i> Skilled in developing and implementing innovative IT solutions.</li>
-                  <li><i class="bi bi-check2"></i> Dedication to enhancing operational efficiency and achieving business goals.</li>
-              </ul>
-          </div>
+            
+            <div class="mt-4">
+              <h3>Data Engineering Expertise:</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <ul>
+                    <li><i class="bi bi-check-circle"></i> Design and implementation of scalable data pipelines</li>
+                    <li><i class="bi bi-check-circle"></i> Cloud-based data architecture (AWS, Azure)</li>
+                    <li><i class="bi bi-check-circle"></i> ETL/ELT process optimization</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul>
+                    <li><i class="bi bi-check-circle"></i> Data warehouse solutions</li>
+                    <li><i class="bi bi-check-circle"></i> Real-time data processing</li>
+                    <li><i class="bi bi-check-circle"></i> Data quality and governance</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      
-
     </section><!-- /About Section -->
 
-<section id="projects" class="projects section light-background">
-
-  <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <h2>Projects</h2>
-  </div><!-- End Section Title -->
-
-  <div class="container" data-aos="fade-up" data-aos-delay="100">
-    <div class="row skills-content skills-animation">
-      
-      <div class="col-lg-6">
-        <ul>
-          <li><i class="bi bi-chevron-right"></i> <strong>Accenture North America - Job Simulation</strong>
-            <ul>
-              <a href="https://github.com/DhruvilPanchal205/Power-BI-Dashboards/tree/main/Accenture%20North%20America" target="_blank"></a>
-              <li>Developed a dynamic dashboard using Power BI to analyze sales performance, customer segmentation, and product performance.</li>
-              <li>Implemented advanced DAX measures to categorize sentiment by score and visualize total positive and negative sentiments.</li>
-            </ul>
-            <img src="assets/Projects/Accenture.png" alt="Accenture Dashboard" class="img-fluid">
-          </li>
-
-          <li><i class="bi bi-chevron-right"></i> <strong>US Finance Consumer Complaints</strong>
-             <a href="https://github.com/DhruvilPanchal205/Power-BI-Dashboards/tree/main/US%20Finance%20Consumer%20Complaints" target="_blank"></a>
-            <ul>
-              <li>Created an interactive Power BI dashboard to track and visualize consumer complaints across the US finance industry.</li>
-              <li>Integrated filters for complaint type, company, state, and response timelines to explore data in-depth.</li>
-            </ul>
-            <img src="assets/Projects/Finance.png" alt="US Finance Dashboard" class="img-fluid">
-          </li>
-        </ul>
+    <!-- Skills Section -->
+    <section id="skills" class="skills section data-engineering-bg">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Technical Skills</h2>
       </div>
 
-      <div class="col-lg-6">
-        <ul>
-          <li><i class="bi bi-chevron-right"></i> <strong>Adidas US Sales Analysis</strong>
-            <a href="https://github.com/DhruvilPanchal205/Power-BI-Dashboards/tree/main/Adidas%20US%20Sales%20Analysis" target="_blank"></a>
-            <ul>
-              <li>Designed a sales performance dashboard in Power BI, focusing on product categories, regions, and seasonal trends.</li>
-              <li>Employed time series analysis to understand sales patterns and forecast future demand.</li>
-            </ul>
-            <img src="assets/Projects/Adidas.png" alt="Adidas Sales Dashboard" class="img-fluid">
-          </li>
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+          <div class="col-lg-4">
+            <h4 class="text-center mb-4"><i class="bi bi-database me-2"></i>Data Technologies</h4>
+            <div class="d-flex flex-wrap justify-content-center">
+              <span class="badge skill-badge">SQL</span>
+              <span class="badge skill-badge">Python</span>
+              <span class="badge skill-badge">PySpark</span>
+              <span class="badge skill-badge">Apache Airflow</span>
+              <span class="badge skill-badge">Snowflake</span>
+              <span class="badge skill-badge">Hadoop</span>
+              <span class="badge skill-badge">Kafka</span>
+            </div>
+          </div>
 
-          <li><i class="bi bi-chevron-right"></i> <strong>IMDb Top 1000 Movies</strong>
-             <a href="https://github.com/DhruvilPanchal205/Power-BI-Dashboards/tree/main/IMDb%20Top%201000%20Movies" target="_blank"></a>
-            <ul>
-              <li>Created a Power BI dashboard to explore the IMDb Top 1000 movies dataset, analyzing ratings, genres, and box office revenue.</li>
-              <li>Used scatter plots and bar charts to visualize correlations between budget, revenue, and ratings.</li>
-            </ul>
-            <img src="assets/Projects/IMDb.png" alt="IMDb Dashboard" class="img-fluid">
-          </li>
+          <div class="col-lg-4">
+            <h4 class="text-center mb-4"><i class="bi bi-cloud me-2"></i>Cloud Platforms</h4>
+            <div class="d-flex flex-wrap justify-content-center">
+              <span class="badge skill-badge">AWS (S3, Glue, Redshift)</span>
+              <span class="badge skill-badge">Azure Data Factory</span>
+              <span class="badge skill-badge">Google BigQuery</span>
+              <span class="badge skill-badge">Databricks</span>
+            </div>
+          </div>
 
-          <li><i class="bi bi-chevron-right"></i> <strong>NYC Jobs 2023</strong>
-            <a href="https://github.com/DhruvilPanchal205/Power-BI-Dashboards/tree/main/NYC%20JOBS" target="_blank"></a>
-            <ul>
-              <li>Developed a comprehensive dashboard in Power BI to analyze job listings across New York City in 2023.</li>
-              <li>Implemented geospatial analysis to highlight job density across various locations.</li>
-            </ul>
-            <img src="assets/Projects/image.png" alt="NYC Jobs Dashboard" class="img-fluid">
-          </li>
-        </ul>
+          <div class="col-lg-4">
+            <h4 class="text-center mb-4"><i class="bi bi-tools me-2"></i>Tools & Frameworks</h4>
+            <div class="d-flex flex-wrap justify-content-center">
+              <span class="badge skill-badge">Power BI</span>
+              <span class="badge skill-badge">Tableau</span>
+              <span class="badge skill-badge">Apache NiFi</span>
+              <span class="badge skill-badge">Docker</span>
+              <span class="badge skill-badge">Git</span>
+              <span class="badge skill-badge">CI/CD</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-    </div>
-  </div>
-
-</section><!-- /Projects Section -->
-
-
-   <!-- Skills Section -->
-<style>
-  .section-title {
-    margin-bottom: 10px; /* Reduces the space below the title */
-  }
-
-  .skills-content ul {
-    list-style: none; /* Removes the black bullets */
-    padding: 0; /* Removes the default padding */
-    margin-top: 0; /* Removes the top margin */
-  }
-  
-  .certifications ul {
-    list-style: none; /* Removes the black bullets */
-    padding: 0; /* Removes the default padding */
-    margin-top: 0; /* Removes the top margin */
-  }
-  
-  .certifications li {
-    padding-left: 0; /* Removes the left padding */
-  }
-</style>
-
-<section id="skills" class="skills section light-background">
-
-
-  <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <h2>Skills</h2>
-  </div><!-- End Section Title -->
-
-  <div class="container" data-aos="fade-up" data-aos-delay="100">
-    <div class="row skills-content skills-animation">
-      <div class="col-lg-6">
-        <ul>
-          <li><i class="bi bi-chevron-right"></i> Analytical Thinking</li>
-          <li><i class="bi bi-chevron-right"></i> Process Improvement</li>
-          <li><i class="bi bi-chevron-right"></i> Effective Communication</li>
-          <li><i class="bi bi-chevron-right"></i> Client-Centric Approach</li>
-        </ul>
-      </div>
-
-      <div class="col-lg-6">
-        <ul>
-          <li><i class="bi bi-chevron-right"></i> Project Management</li>
-          <li><i class="bi bi-chevron-right"></i> Data Analysis</li>
-          <li><i class="bi bi-chevron-right"></i> Requirements Gathering</li>
-          <li><i class="bi bi-chevron-right"></i> Problem-Solving</li>
-        </ul>
-      </div>
-
-      <div class="col-lg-6">
-        <ul>
-          <li><i class="bi bi-chevron-right"></i> <strong>Microsoft Office Suite</strong></li>
-          <li><i class="bi bi-chevron-right"></i> <strong>Business Intelligence (BI) Tools</strong></li>
-          <li><i class="bi bi-chevron-right"></i> <strong>SQL</strong></li>
-          <li><i class="bi bi-chevron-right"></i> <strong>CRM Systems</strong></li>
-        </ul>
-      </div>
-
-      <div class="col-lg-6">
-        <ul>
-          <li><i class="bi bi-chevron-right"></i> <strong>Project Management Tools</strong></li>
-          <li><i class="bi bi-chevron-right"></i> <strong>Data Analysis Tools</strong></li>
-          <li><i class="bi bi-chevron-right"></i> <strong>ERP Systems</strong></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- Certifications Section -->
-  <div class="container section-title mt-5" data-aos="fade-up">
-    <h2>Certifications</h2>
-  </div><!-- End Certifications Title -->
-
-  <div class="container certifications" data-aos="fade-up" data-aos-delay="100">
-    <div class="row">
-      <div class="col-lg-12">
-        <ul>
-         <a href="https://badges.iiba.org/f7ba777c-3c2b-421e-b1dc-1a4b88b26c3b" target="_blank" rel="noopener noreferrer">Entry Certificate in Business Analysis (ECBA) - IIBA</a>
-    <ul>
-      <li><i class="bi bi-chevron-right"></i>Certified with the foundational knowledge of business analysis concepts and techniques.</li>
-      <li><i class="bi bi-chevron-right"></i>Demonstrated proficiency in requirements gathering, stakeholder analysis, and business process improvement.</li>
-      <li><i class="bi bi-chevron-right"></i>Validated skills in business analysis planning, elicitation techniques, and solution evaluation.</li>
-    </ul>
-  </li>
-          <li>
-    <a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/Accenture%20North%20America/hzmoNKtzvAzXsEqx8_Accenture%20North%20America_DZzyqnoQXgn5MxT25_1727726200613_completion_certificate.pdf" target="_blank" rel="noopener noreferrer">Accenture North America Data Analytics and Visualization Job Simulation on Forage</a>
-    <ul>
-      <li><i class="bi bi-chevron-right"></i>Completed a simulation focused on advising a hypothetical social media client as a Data Analyst at Accenture.</li>
-      <li><i class="bi bi-chevron-right"></i>Cleaned, modelled and analyzed 7 datasets to uncover insights into content trends to inform strategic decisions.</li>
-      <li><i class="bi bi-chevron-right"></i>Prepared a PowerPoint deck and video presentation to communicate key insights for the client and internal stakeholders.</li>
-          <li>
-    <a href="assets/PDF/tKxM2fzpMvmuA8sei_SAP USA_DZzyqnoQXgn5MxT25_1721247847996_completion_certificate.pdf" target="_blank" rel="noopener noreferrer">SAP USA Technical Consulting Job Simulation on Forage</a>
-    <ul>
-      <li><i class="bi bi-chevron-right"></i>Completed a job simulation advising a hypothetical shoe retailer, Fond Rouge, experiencing declining sales in the US.</li>
-      <li><i class="bi bi-chevron-right"></i>Reviewed and identified right data sources to solve the client's problem.</li>
-      <li><i class="bi bi-chevron-right"></i>Built a dashboard to explore the data of Fond Rouge using SAP Analytics Cloud (SAC).</li>
-  <li>
-    <a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/BCG%20/4Rfzeut8gXmNwfxXv_BCG%20_DZzyqnoQXgn5MxT25_1720214540745_completion_certificate.pdf" target="_blank" rel="noopener noreferrer">BCG Introduction to Strategy Consulting Job Simulation on Forage</a>
-    <ul>
-      <li><i class="bi bi-chevron-right"></i>Learned how to think creatively by challenging the assumptions that guide today’s thinking.</li>
-      <li><i class="bi bi-chevron-right"></i>Used effective brainstorm strategies to generate ideas to help a fictional luxury clothing company increase sales revenue.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-</section><!-- /Skills Section -->
-
-
-    <!-- Resume Section -->
-<section id="resume" class="resume section">
-
-  <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <h2>Resume</h2>
-    <p>Dedicated and results-driven Business Analyst with a strong background in project management and business process optimization. Expertise in data analysis, requirements gathering, and implementing innovative solutions to enhance efficiency and profitability.</p>
-  </div><!-- End Section Title -->
-<div class="container">
-    <!-- Download Resume Button -->
-    <div class="text-center">
-      <a href="assets/PDF/Dhruvil_Panchal_BA.pdf" class="btn btn-primary" download>Download My Resume</a>
-    </div>
-  </div>
-  <div class="container">
-
-    <div class="row">
-
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-        <h3 class="resume-title">Summary</h3>
-
-        <div class="resume-item pb-0">
-          <h4>Dhruvil Panchal</h4>
-          <p><em>Dedicated and results-driven Business Analyst with 5 years of experience in project management and business process optimization. Expertise in data analysis, requirements gathering, and implementing innovative solutions to enhance efficiency and profitability. Proficient in developing and interpreting data models to support strategic decision-making and drive business growth. Adept at collaborating with cross-functional teams to deliver successful projects and achieve organizational objectives.</em></p>
-          <ul>
-          </ul>
-        </div><!-- End Resume Item -->
-
-        <h3 class="resume-title">Education</h3>
-        <div class="resume-item">
-          <h4>Master of Science in Information Systems</h4>
-          <h5>May 2023</h5>
-          <p><em>Cleveland State University, Cleveland, OH</em></p>
-          <p>Honors: BETA GAMMA SIGMA</p>
-          <p>Graduate Coursework: Project Management & Scheduling, Database Management Systems, Data Mining, Business Analysis, Advanced System Design, Cyber Security Risk Management, HR Management</p>
-        </div><!-- End Resume Item -->
-
-      </div>
-
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-        <h3 class="resume-title">Professional Experience</h3>
-       <div class="resume-item">
-          <h4>Business Analyst</h4>
-          <h5>August 2024 - Current</h5>
-          <p><em>SASA (SAVE ANCIENT STUDIES ALLIANCE) - Teaneck, NJ</em></p>
-          <ul>
-            <li>Directed a transactional data ingestion project, processing over 100K records monthly using Microsoft Excel for data preparation and Google Looker for real-time dashboard creation, enhancing reporting efficiency by 30%.</li>
-            <li>Supervised a team of 5+ developers to design and implement RESTful APIs for integrating transactional data across financial systems, reducing manual data entry time by 40%.</li>
-            <li>Automated ingestion workflows with Excel macros, reducing data processing time by 25%, and integrated APIs with Google Looker to ensure seamless, real-time data visualization.</li>
-            <li>Translated business requirements into technical solutions for API development and data ingestion tasks, achieving 100% stakeholder satisfaction through clear communication and timely delivery.</li>
-            <li>Managed Agile ceremonies, including sprint planning and retrospectives, with Jira and Confluence, delivering project milestones on schedule in 90% of sprints.</li>
-          </ul>
-        </div><!-- End Resume Item -->
+      <!-- Certifications Section -->
+      <div class="container mt-5" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Certifications</h2>
+        </div>
         
-        <div class="resume-item">
-          <h4>Data Analyst</h4>
-          <h5>July - June 2024</h5>
-          <p><em>ThirthaSoft, LLC</em></p>
-          <ul>
-            <li>Designed and implemented ETL pipelines using SQL Server, Python (Pandas, Airflow), and AWS, automating data integration from multiple sources, reducing manual intervention, and decreasing reporting time by 40%.</li>
-            <li>Developed and executed A/B testing frameworks to evaluate enhancements in financial reporting processes, utilizing statistical analysis to improve data accuracy by 15%.</li>
-            <li>Integrated data from disparate systems via APIs, ensuring seamless communication and enhanced reliability of financial reporting across AWS.</li>
-            <li>Performed detailed statistical analysis on financial metrics, identifying trends that informed executive decision-making and streamlined reporting strategies.</li>
-            <li>Created and deployed real-time dashboards in Power BI, providing stakeholders with actionable insights and eliminating manual reporting workflows, saving 10+ hours per week.</li>
-          </ul>
-        </div><!-- End Resume Item -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">AWS Certified Data Analytics - Specialty</h5>
+                <p class="card-text">Validation of expertise in designing and implementing AWS services to derive value from data.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">Google Cloud Professional Data Engineer</h5>
+                <p class="card-text">Certification demonstrating ability to design and build data processing systems on GCP.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /Skills Section -->
 
-        <div class="resume-item">
-          <h4>Research Assistant</h4>
-          <h5>January 2023 - May 2023</h5>
-          <p><em>Cleveland State University</em></p>
-          <ul>
-            <li>Engineered sophisticated data models to scrutinize transactional data and detect anomalies, implementing a fraud detection system that enhanced detection precision by 45%.</li>
-            <li>Developed data models to analyze transaction data and customer behavior, establishing a comprehensive system that significantly improved detection accuracy by 45%.</li>
-            <li>Built optimization models in collaboration with HR using historical data and market insights; employed advanced algorithms to predict workforce trends, leading to a 7% increase in employee engagement and improved planning.</li>
-            <li>Established predictive models using employee surveys, HR systems, and market data; utilized random forest and gradient boosting to forecast workforce demand and attrition, boosting engagement by 7% and enhancing strategic planning.</li>
-          </ul>
-        </div><!-- End Resume Item -->
-
-        <div class="resume-item">
-          <h4>IT Intern</h4>
-          <h5>June 2022 - August 2022</h5>
-          <p><em>ITHENA</em></p>
-          <ul>
-            <li>Developed and implemented OPEN IAM portal utilizing AWS infrastructure (EC2, RDS, CloudFront), enhancing user access management and reducing login time by 20%.</li>
-            <li>Analyzed and documented functional requirements for integrating Role-Based Access Control (RBAC) and Single Sign-On (SSO) capabilities within the OPEN IAM system, enhancing secure user access management.</li>
-            <li>Managed Agile scrum boards and facilitated meetings, ensuring timely project milestones and improving team productivity by 15%.</li>
-          </ul>
-        </div><!-- End Resume Item -->
-
-        <div class="resume-item">
-          <h4>Database Administrator</h4>
-          <h5>May 2019 - June 2021</h5>
-          <p><em>BrainyBeam Technologies Pvt. Ltd. </em></p>
-          <ul>
-            <li>Performed in-depth data analysis using SQL and Excel to uncover inefficiencies in manufacturing processes, resulting in a 15% reduction in production costs.</li>
-            <li>Led cross-functional teams in mapping and optimizing workflows, achieving a 20% improvement in operational efficiency.</li>
-            <li>Engineered KPI reporting frameworks that boosted decision-making accuracy, contributing to a 25% increase in on-time delivery performance.</li>
-          </ul>
-        </div><!-- End Resume Item -->
-
+    <!-- Projects Section -->
+    <section id="projects" class="projects section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Data Engineering Projects</h2>
       </div>
 
-    </div>
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+          
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card project-card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Real-time Stock Market Data Pipeline</h5>
+                <p class="card-text">
+                  <span class="badge bg-primary">Kafka</span>
+                  <span class="badge bg-info">Spark</span>
+                  <span class="badge bg-secondary">AWS</span>
+                </p>
+                <p>Built a real-time data pipeline processing 1M+ stock market events daily using Kafka for streaming, Spark for processing, and AWS S3 for storage.</p>
+                <a href="#" class="btn btn-outline-primary">View Details</a>
+              </div>
+            </div>
+          </div>
 
-  </div>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card project-card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Retail Data Warehouse</h5>
+                <p class="card-text">
+                  <span class="badge bg-primary">Snowflake</span>
+                  <span class="badge bg-info">Airflow</span>
+                  <span class="badge bg-secondary">dbt</span>
+                </p>
+                <p>Designed and implemented a cloud-based data warehouse solution for a retail chain, improving query performance by 60% and reducing storage costs by 30%.</p>
+                <a href="#" class="btn btn-outline-primary">View Details</a>
+              </div>
+            </div>
+          </div>
 
-</section><!-- /Resume Section -->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card project-card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Healthcare ETL Optimization</h5>
+                <p class="card-text">
+                  <span class="badge bg-primary">Python</span>
+                  <span class="badge bg-info">PySpark</span>
+                  <span class="badge bg-secondary">Azure</span>
+                </p>
+                <p>Optimized healthcare data ETL processes reducing processing time from 8 hours to 45 minutes through parallel processing and optimized Spark configurations.</p>
+                <a href="#" class="btn btn-outline-primary">View Details</a>
+              </div>
+            </div>
+          </div>
 
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card project-card h-100">
+              <div class="card-body">
+                <h5 class="card-title">IoT Data Processing System</h5>
+                <p class="card-text">
+                  <span class="badge bg-primary">Kinesis</span>
+                  <span class="badge bg-info">Lambda</span>
+                  <span class="badge bg-secondary">DynamoDB</span>
+                </p>
+                <p>Developed serverless architecture for processing IoT sensor data at scale, handling 500K events per minute with 99.99% availability.</p>
+                <a href="#" class="btn btn-outline-primary">View Details</a>
+              </div>
+            </div>
+          </div>
 
-    
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card project-card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Data Quality Framework</h5>
+                <p class="card-text">
+                  <span class="badge bg-primary">Great Expectations</span>
+                  <span class="badge bg-info">Python</span>
+                  <span class="badge bg-secondary">Airflow</span>
+                </p>
+                <p>Implemented automated data quality checks across critical pipelines, reducing data issues in production by 85%.</p>
+                <a href="#" class="btn btn-outline-primary">View Details</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card project-card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Clickstream Analytics</h5>
+                <p class="card-text">
+                  <span class="badge bg-primary">Flink</span>
+                  <span class="badge bg-info">Kafka</span>
+                  <span class="badge bg-secondary">Redshift</span>
+                </p>
+                <p>Built real-time clickstream analytics platform processing 10K events/sec with sub-second latency for personalized recommendations.</p>
+                <a href="#" class="btn btn-outline-primary">View Details</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- /Projects Section -->
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience section data-engineering-bg">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Professional Experience</h2>
+      </div>
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+          <div class="col-lg-12">
+            
+            <div class="resume-item">
+              <h4>Data Engineer</h4>
+              <h5>August 2024 - Present</h5>
+              <p><em>SASA (SAVE ANCIENT STUDIES ALLIANCE) - Teaneck, NJ</em></p>
+              <ul>
+                <li>Architected and implemented a scalable data ingestion pipeline processing 100K+ records daily using AWS Glue, Lambda, and S3, reducing processing time by 40%</li>
+                <li>Designed dimensional data models in Snowflake optimizing query performance for analytics by 60%</li>
+                <li>Implemented CI/CD pipeline for data infrastructure using Terraform and GitHub Actions</li>
+                <li>Developed real-time dashboard using AWS QuickSight with sub-minute latency for executive reporting</li>
+              </ul>
+            </div>
+
+            <div class="resume-item">
+              <h4>Data Engineer</h4>
+              <h5>July 2023 - June 2024</h5>
+              <p><em>ThirthaSoft, LLC</em></p>
+              <ul>
+                <li>Built end-to-end ETL pipelines using PySpark and Airflow, processing 5TB of financial data monthly</li>
+                <li>Migrated on-premise SQL Server workloads to AWS Redshift, reducing costs by 35%</li>
+                <li>Implemented data quality framework using Great Expectations, improving data reliability by 90%</li>
+                <li>Optimized Spark jobs reducing cluster costs by 25% through partitioning and caching strategies</li>
+              </ul>
+            </div>
+
+            <div class="resume-item">
+              <h4>Data Engineer Intern</h4>
+              <h5>January 2023 - May 2023</h5>
+              <p><em>Cleveland State University</em></p>
+              <ul>
+                <li>Developed fraud detection models using Python and Scikit-learn with 92% accuracy</li>
+                <li>Created data pipelines for student analytics using Azure Data Factory</li>
+                <li>Implemented automated data validation framework reducing manual checks by 80%</li>
+              </ul>
+            </div>
+
+            <div class="resume-item">
+              <h4>Data Engineer</h4>
+              <h5>May 2019 - June 2021</h5>
+              <p><em>BrainyBeam Technologies Pvt. Ltd.</em></p>
+              <ul>
+                <li>Designed and implemented data warehouse solution for manufacturing analytics</li>
+                <li>Built ETL processes reducing data processing time from 6 hours to 45 minutes</li>
+                <li>Developed predictive maintenance models reducing equipment downtime by 30%</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section><!-- /Experience Section -->
+
     <!-- Contact Section -->
     <section id="contact" class="contact section">
-
-      <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
-      </div><!-- End Section Title -->
-    
+        <h2>Get In Touch</h2>
+      </div>
+
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-    
         <div class="row gy-4">
-    
           <div class="col-lg-5">
-    
             <div class="contact-info">
               <div class="contact-item">
                 <i class="bi bi-geo-alt"></i>
-                <h4>Address:</h4>
-                <p>10834 Stellar Cir, Palm Beach Gardens, FL, 33412, United States</p>
+                <h4>Location:</h4>
+                <p>10834 Stellar Cir, Palm Beach Gardens, FL 33412</p>
               </div>
-    
               <div class="contact-item">
                 <i class="bi bi-phone"></i>
-                <h4>Phone:</h4>
-                <p>(407) 494-1791</p>
+                <h4>Call:</h4>
+                <p>+1 (407) 494-1791</p>
               </div>
-    
               <div class="contact-item">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
                 <p>dpanchal.dp.2005@gmail.com</p>
               </div>
-            </div><!-- End Contact Info -->
-    
+            </div>
           </div>
-    
+
+          <div class="col-lg-7">
+            <form action="forms/contact.php" method="post" class="php-email-form">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+              </div>
+              <div class="text-center mt-3"><button type="submit">Send Message</button></div>
+            </form>
+          </div>
         </div>
-    
       </div>
-    
     </section><!-- /Contact Section -->
-    
+
   </main>
 
-  <footer id="footer" class="footer position-relative light-background">
-
+  <footer id="footer" class="footer position-relative data-engineering-bg">
     <div class="container">
-      <div class="copyright text-center ">
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">Dhruvil Panchal</a>
+      <div class="copyright">
+        &copy; Copyright <strong><span>Dhruvil Panchal</span></strong>. All Rights Reserved
       </div>
     </div>
-
   </footer>
-
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
-  <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
