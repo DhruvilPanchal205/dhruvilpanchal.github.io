@@ -15,7 +15,7 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,34 +28,102 @@
   <link href="assets/css/main.css" rel="stylesheet">
   
   <style>
-    .data-engineering-bg {
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: white;
+    :root {
+      --primary-color: #3a86ff;
+      --secondary-color: #8338ec;
+      --dark-color: #2b2d42;
+      --light-color: #f8f9fa;
+      --accent-color: #ff006e;
     }
-    .tech-icon {
-      font-size: 2rem;
-      margin-right: 10px;
-      color: #4fc3f7;
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: #333;
+      background-color: white;
     }
-    .skill-badge {
-      background-color: #2c5364;
-      color: white;
-      margin: 5px;
+    
+    .hero {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
     }
+    
+    .section-title h2 {
+      color: var(--dark-color);
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title h2:after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 3px;
+      background: var(--primary-color);
+      bottom: -10px;
+      left: 0;
+    }
+    
+    .navmenu a:hover, .navmenu .active {
+      color: var(--primary-color) !important;
+    }
+    
+    .resume-item {
+      border-left: 2px solid var(--primary-color);
+      padding-left: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .skills-content .progress {
+      height: 10px;
+      border-radius: 5px;
+    }
+    
+    .contact-info {
+      background: #f8f9fa;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
     .project-card {
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
       transition: transform 0.3s;
-      border: 1px solid #2c5364;
     }
+    
     .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transform: translateY(-10px);
+    }
+    
+    .typed-cursor {
+      color: var(--primary-color);
+    }
+    
+    .btn-primary {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+    
+    .btn-primary:hover {
+      background-color: #2a75e6;
+      border-color: #2a75e6;
+    }
+    
+    .social-links a {
+      color: var(--dark-color);
+      transition: color 0.3s;
+    }
+    
+    .social-links a:hover {
+      color: var(--primary-color);
     }
   </style>
 </head>
 
 <body class="index-page">
 
-  <header id="header" class="header data-engineering-bg d-flex flex-column">
+  <header id="header" class="header d-flex flex-column">
     <i class="header-toggle d-xl-none bi bi-list"></i>
 
     <div class="profile-img">
@@ -64,6 +132,7 @@
 
     <a href="index.html" class="logo d-flex align-items-center justify-content-center">
       <h1 class="sitename">Dhruvil Panchal</h1>
+      <span class="d-block mt-1" style="font-size: 0.8rem; color: var(--dark-color);">Data Engineer</span>
     </a>
 
     <div class="social-links text-center">
@@ -75,9 +144,9 @@
       <ul>
         <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i> Home</a></li>
         <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
-        <li><a href="#skills"><i class="bi bi-gear navicon"></i> Skills</a></li>
         <li><a href="#projects"><i class="bi bi-code-square navicon"></i> Projects</a></li>
-        <li><a href="#experience"><i class="bi bi-briefcase navicon"></i> Experience</a></li>
+        <li><a href="#skills"><i class="bi bi-gear navicon"></i> Skills</a></li>
+        <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
         <li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
       </ul>
     </nav>
@@ -86,18 +155,13 @@
   <main class="main">
 
     <!-- Hero Section -->
-    <section id="hero" class="hero section data-engineering-bg">
-      <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
-        <h1>Dhruvil Panchal</h1>
-        <p class="typed-container">
-          I'm a <span class="typed" data-typed-items="Data Engineer, ETL Specialist, Cloud Data Architect, Data Pipeline Developer"></span>
-          <span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span>
-        </p>
+    <section id="hero" class="hero section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <h1 class="display-4 fw-bold">Dhruvil Panchal</h1>
+        <p class="lead">I'm a <span class="typed" data-typed-items="Data Engineer, ETL Specialist, Cloud Data Architect, Data Pipeline Developer"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
         <div class="mt-4">
-          <span class="tech-icon"><i class="bi bi-database"></i></span>
-          <span class="tech-icon"><i class="bi bi-cloud"></i></span>
-          <span class="tech-icon"><i class="bi bi-diagram-3"></i></span>
-          <span class="tech-icon"><i class="bi bi-graph-up"></i></span>
+          <a href="#contact" class="btn btn-primary btn-lg me-2">Hire Me</a>
+          <a href="#projects" class="btn btn-outline-primary btn-lg">View Projects</a>
         </div>
       </div>
     </section><!-- /Hero Section -->
@@ -106,7 +170,7 @@
     <section id="about" class="about section">
       <div class="container section-title" data-aos="fade-up">
         <h2>About Me</h2>
-        <p>Data Engineer with expertise in building scalable data pipelines, optimizing ETL processes, and implementing cloud-based data solutions. Passionate about transforming raw data into valuable insights through robust architectures.</p>
+        <p class="lead">Data Engineer with expertise in building scalable data pipelines, optimizing ETL processes, and implementing cloud-based data solutions. Passionate about transforming raw data into valuable insights through robust engineering practices.</p>
       </div>
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -114,37 +178,51 @@
           <div class="col-lg-12 content">
             <div class="row">
               <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.dhruvilpanchal.com</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+1-407-494-1791</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Location:</strong> <span>Open to relocate</span></li>
+                <ul class="list-unstyled">
+                  <li><i class="bi bi-chevron-right text-primary"></i> <strong>Phone:</strong> <span>+1-407-494-1791</span></li>
+                  <li><i class="bi bi-chevron-right text-primary"></i> <strong>Location:</strong> <span>Open to relocate</span></li>
+                  <li><i class="bi bi-chevron-right text-primary"></i> <strong>Freelance:</strong> <span>Available</span></li>
                 </ul>
               </div>
               <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Masters in Information Systems</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>dpanchal.dp.2005@gmail.com</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Job Type:</strong> <span>Full-time, Contract</span></li>
+                <ul class="list-unstyled">
+                  <li><i class="bi bi-chevron-right text-primary"></i> <strong>Degree:</strong> <span>Masters in Information Systems</span></li>
+                  <li><i class="bi bi-chevron-right text-primary"></i> <strong>Email:</strong> <span>dpanchal.dp.2005@gmail.com</span></li>
+                  <li><i class="bi bi-chevron-right text-primary"></i> <strong>Job Type:</strong> <span>Full-time, Contract</span></li>
                 </ul>
               </div>
             </div>
             
-            <div class="mt-4">
-              <h3>Data Engineering Expertise:</h3>
+            <div class="mt-5">
+              <h3>Data Engineering Expertise</h3>
               <div class="row">
                 <div class="col-md-6">
-                  <ul>
-                    <li><i class="bi bi-check-circle"></i> Design and implementation of scalable data pipelines</li>
-                    <li><i class="bi bi-check-circle"></i> Cloud-based data architecture (AWS, Azure)</li>
-                    <li><i class="bi bi-check-circle"></i> ETL/ELT process optimization</li>
-                  </ul>
+                  <div class="d-flex mb-3">
+                    <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                    <span>Designing and implementing scalable data pipelines</span>
+                  </div>
+                  <div class="d-flex mb-3">
+                    <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                    <span>Optimizing ETL processes for performance and reliability</span>
+                  </div>
+                  <div class="d-flex mb-3">
+                    <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                    <span>Building cloud-based data warehouses and lakes</span>
+                  </div>
                 </div>
                 <div class="col-md-6">
-                  <ul>
-                    <li><i class="bi bi-check-circle"></i> Data warehouse solutions</li>
-                    <li><i class="bi bi-check-circle"></i> Real-time data processing</li>
-                    <li><i class="bi bi-check-circle"></i> Data quality and governance</li>
-                  </ul>
+                  <div class="d-flex mb-3">
+                    <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                    <span>Developing real-time data processing systems</span>
+                  </div>
+                  <div class="d-flex mb-3">
+                    <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                    <span>Implementing data quality and monitoring frameworks</span>
+                  </div>
+                  <div class="d-flex mb-3">
+                    <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                    <span>Automating data workflows and infrastructure</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -153,174 +231,96 @@
       </div>
     </section><!-- /About Section -->
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills section data-engineering-bg">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Technical Skills</h2>
-      </div>
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row">
-          <div class="col-lg-4">
-            <h4 class="text-center mb-4"><i class="bi bi-database me-2"></i>Data Technologies</h4>
-            <div class="d-flex flex-wrap justify-content-center">
-              <span class="badge skill-badge">SQL</span>
-              <span class="badge skill-badge">Python</span>
-              <span class="badge skill-badge">PySpark</span>
-              <span class="badge skill-badge">Apache Airflow</span>
-              <span class="badge skill-badge">Snowflake</span>
-              <span class="badge skill-badge">Hadoop</span>
-              <span class="badge skill-badge">Kafka</span>
-            </div>
-          </div>
-
-          <div class="col-lg-4">
-            <h4 class="text-center mb-4"><i class="bi bi-cloud me-2"></i>Cloud Platforms</h4>
-            <div class="d-flex flex-wrap justify-content-center">
-              <span class="badge skill-badge">AWS (S3, Glue, Redshift)</span>
-              <span class="badge skill-badge">Azure Data Factory</span>
-              <span class="badge skill-badge">Google BigQuery</span>
-              <span class="badge skill-badge">Databricks</span>
-            </div>
-          </div>
-
-          <div class="col-lg-4">
-            <h4 class="text-center mb-4"><i class="bi bi-tools me-2"></i>Tools & Frameworks</h4>
-            <div class="d-flex flex-wrap justify-content-center">
-              <span class="badge skill-badge">Power BI</span>
-              <span class="badge skill-badge">Tableau</span>
-              <span class="badge skill-badge">Apache NiFi</span>
-              <span class="badge skill-badge">Docker</span>
-              <span class="badge skill-badge">Git</span>
-              <span class="badge skill-badge">CI/CD</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Certifications Section -->
-      <div class="container mt-5" data-aos="fade-up">
-        <div class="section-title">
-          <h2>Certifications</h2>
-        </div>
-        
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card mb-3">
-              <div class="card-body">
-                <h5 class="card-title">AWS Certified Data Analytics - Specialty</h5>
-                <p class="card-text">Validation of expertise in designing and implementing AWS services to derive value from data.</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-md-6">
-            <div class="card mb-3">
-              <div class="card-body">
-                <h5 class="card-title">Google Cloud Professional Data Engineer</h5>
-                <p class="card-text">Certification demonstrating ability to design and build data processing systems on GCP.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section><!-- /Skills Section -->
-
     <!-- Projects Section -->
-    <section id="projects" class="projects section">
+    <section id="projects" class="projects section bg-light">
       <div class="container section-title" data-aos="fade-up">
         <h2>Data Engineering Projects</h2>
+        <p>Hands-on experience building robust data solutions</p>
       </div>
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row">
+        <div class="row gy-4">
           
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card project-card h-100">
+          <div class="col-lg-4 col-md-6">
+            <div class="project-card">
               <div class="card-body">
-                <h5 class="card-title">Real-time Stock Market Data Pipeline</h5>
-                <p class="card-text">
-                  <span class="badge bg-primary">Kafka</span>
-                  <span class="badge bg-info">Spark</span>
-                  <span class="badge bg-secondary">AWS</span>
-                </p>
-                <p>Built a real-time data pipeline processing 1M+ stock market events daily using Kafka for streaming, Spark for processing, and AWS S3 for storage.</p>
-                <a href="#" class="btn btn-outline-primary">View Details</a>
+                <h5 class="card-title">ETL Pipeline for Financial Data</h5>
+                <p class="card-text">Built a scalable ETL pipeline processing 100K+ financial transactions daily using Python and AWS Glue.</p>
+                <div class="d-flex align-items-center mb-3">
+                  <span class="badge bg-primary me-2">Python</span>
+                  <span class="badge bg-primary">AWS</span>
+                </div>
+                <a href="https://github.com/DhruvilPanchal205/Power-BI-Dashboards/tree/main/Accenture%20North%20America" class="btn btn-sm btn-outline-primary">View Project</a>
               </div>
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card project-card h-100">
+          <div class="col-lg-4 col-md-6">
+            <div class="project-card">
               <div class="card-body">
-                <h5 class="card-title">Retail Data Warehouse</h5>
-                <p class="card-text">
-                  <span class="badge bg-primary">Snowflake</span>
-                  <span class="badge bg-info">Airflow</span>
-                  <span class="badge bg-secondary">dbt</span>
-                </p>
-                <p>Designed and implemented a cloud-based data warehouse solution for a retail chain, improving query performance by 60% and reducing storage costs by 30%.</p>
-                <a href="#" class="btn btn-outline-primary">View Details</a>
+                <h5 class="card-title">Real-time Analytics Dashboard</h5>
+                <p class="card-text">Developed a real-time dashboard with Kafka streams and Power BI for consumer complaint analysis.</p>
+                <div class="d-flex align-items-center mb-3">
+                  <span class="badge bg-primary me-2">Kafka</span>
+                  <span class="badge bg-primary">Power BI</span>
+                </div>
+                <a href="https://github.com/DhruvilPanchal205/Power-BI-Dashboards/tree/main/US%20Finance%20Consumer%20Complaints" class="btn btn-sm btn-outline-primary">View Project</a>
               </div>
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card project-card h-100">
+          <div class="col-lg-4 col-md-6">
+            <div class="project-card">
               <div class="card-body">
-                <h5 class="card-title">Healthcare ETL Optimization</h5>
-                <p class="card-text">
-                  <span class="badge bg-primary">Python</span>
-                  <span class="badge bg-info">PySpark</span>
-                  <span class="badge bg-secondary">Azure</span>
-                </p>
-                <p>Optimized healthcare data ETL processes reducing processing time from 8 hours to 45 minutes through parallel processing and optimized Spark configurations.</p>
-                <a href="#" class="btn btn-outline-primary">View Details</a>
+                <h5 class="card-title">Cloud Data Warehouse</h5>
+                <p class="card-text">Implemented a cloud-based data warehouse solution for Adidas sales data using Snowflake and dbt.</p>
+                <div class="d-flex align-items-center mb-3">
+                  <span class="badge bg-primary me-2">Snowflake</span>
+                  <span class="badge bg-primary">dbt</span>
+                </div>
+                <a href="https://github.com/DhruvilPanchal205/Power-BI-Dashboards/tree/main/Adidas%20US%20Sales%20Analysis" class="btn btn-sm btn-outline-primary">View Project</a>
               </div>
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card project-card h-100">
+          <div class="col-lg-4 col-md-6">
+            <div class="project-card">
               <div class="card-body">
-                <h5 class="card-title">IoT Data Processing System</h5>
-                <p class="card-text">
-                  <span class="badge bg-primary">Kinesis</span>
-                  <span class="badge bg-info">Lambda</span>
-                  <span class="badge bg-secondary">DynamoDB</span>
-                </p>
-                <p>Developed serverless architecture for processing IoT sensor data at scale, handling 500K events per minute with 99.99% availability.</p>
-                <a href="#" class="btn btn-outline-primary">View Details</a>
+                <h5 class="card-title">Movie Data Pipeline</h5>
+                <p class="card-text">Created an automated data pipeline for IMDb dataset with Airflow and PostgreSQL.</p>
+                <div class="d-flex align-items-center mb-3">
+                  <span class="badge bg-primary me-2">Airflow</span>
+                  <span class="badge bg-primary">PostgreSQL</span>
+                </div>
+                <a href="https://github.com/DhruvilPanchal205/Power-BI-Dashboards/tree/main/IMDb%20Top%201000%20Movies" class="btn btn-sm btn-outline-primary">View Project</a>
               </div>
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card project-card h-100">
+          <div class="col-lg-4 col-md-6">
+            <div class="project-card">
               <div class="card-body">
-                <h5 class="card-title">Data Quality Framework</h5>
-                <p class="card-text">
-                  <span class="badge bg-primary">Great Expectations</span>
-                  <span class="badge bg-info">Python</span>
-                  <span class="badge bg-secondary">Airflow</span>
-                </p>
-                <p>Implemented automated data quality checks across critical pipelines, reducing data issues in production by 85%.</p>
-                <a href="#" class="btn btn-outline-primary">View Details</a>
+                <h5 class="card-title">Job Market Analysis</h5>
+                <p class="card-text">Built a geospatial data processing system for NYC job market analysis using Python and GeoPandas.</p>
+                <div class="d-flex align-items-center mb-3">
+                  <span class="badge bg-primary me-2">Python</span>
+                  <span class="badge bg-primary">GeoPandas</span>
+                </div>
+                <a href="https://github.com/DhruvilPanchal205/Power-BI-Dashboards/tree/main/NYC%20JOBS" class="btn btn-sm btn-outline-primary">View Project</a>
               </div>
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card project-card h-100">
+          <div class="col-lg-4 col-md-6">
+            <div class="project-card">
               <div class="card-body">
-                <h5 class="card-title">Clickstream Analytics</h5>
-                <p class="card-text">
-                  <span class="badge bg-primary">Flink</span>
-                  <span class="badge bg-info">Kafka</span>
-                  <span class="badge bg-secondary">Redshift</span>
-                </p>
-                <p>Built real-time clickstream analytics platform processing 10K events/sec with sub-second latency for personalized recommendations.</p>
-                <a href="#" class="btn btn-outline-primary">View Details</a>
+                <h5 class="card-title">Data Lake Implementation</h5>
+                <p class="card-text">Designed and implemented a data lake architecture on AWS for unstructured data processing.</p>
+                <div class="d-flex align-items-center mb-3">
+                  <span class="badge bg-primary me-2">AWS</span>
+                  <span class="badge bg-primary">Spark</span>
+                </div>
+                <a href="#" class="btn btn-sm btn-outline-primary">View Project</a>
               </div>
             </div>
           </div>
@@ -329,91 +329,210 @@
       </div>
     </section><!-- /Projects Section -->
 
-    <!-- Experience Section -->
-    <section id="experience" class="experience section data-engineering-bg">
+    <!-- Skills Section -->
+    <section id="skills" class="skills section">
       <div class="container section-title" data-aos="fade-up">
-        <h2>Professional Experience</h2>
+        <h2>Technical Skills</h2>
+        <p>Tools and technologies I work with</p>
       </div>
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row">
-          <div class="col-lg-12">
+          
+          <div class="col-lg-6">
+            <div class="mb-4">
+              <h4 class="mb-3">Data Engineering</h4>
+              <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">ETL/ELT Pipelines</div>
+              </div>
+              <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">Data Warehousing</div>
+              </div>
+              <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">Data Modeling</div>
+              </div>
+            </div>
             
-            <div class="resume-item">
-              <h4>Data Engineer</h4>
-              <h5>August 2024 - Present</h5>
-              <p><em>SASA (SAVE ANCIENT STUDIES ALLIANCE) - Teaneck, NJ</em></p>
-              <ul>
-                <li>Architected and implemented a scalable data ingestion pipeline processing 100K+ records daily using AWS Glue, Lambda, and S3, reducing processing time by 40%</li>
-                <li>Designed dimensional data models in Snowflake optimizing query performance for analytics by 60%</li>
-                <li>Implemented CI/CD pipeline for data infrastructure using Terraform and GitHub Actions</li>
-                <li>Developed real-time dashboard using AWS QuickSight with sub-minute latency for executive reporting</li>
-              </ul>
+            <div class="mb-4">
+              <h4 class="mb-3">Cloud Technologies</h4>
+              <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">AWS</div>
+              </div>
+              <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Azure</div>
+              </div>
+              <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">GCP</div>
+              </div>
             </div>
-
-            <div class="resume-item">
-              <h4>Data Engineer</h4>
-              <h5>July 2023 - June 2024</h5>
-              <p><em>ThirthaSoft, LLC</em></p>
-              <ul>
-                <li>Built end-to-end ETL pipelines using PySpark and Airflow, processing 5TB of financial data monthly</li>
-                <li>Migrated on-premise SQL Server workloads to AWS Redshift, reducing costs by 35%</li>
-                <li>Implemented data quality framework using Great Expectations, improving data reliability by 90%</li>
-                <li>Optimized Spark jobs reducing cluster costs by 25% through partitioning and caching strategies</li>
-              </ul>
+          </div>
+          
+          <div class="col-lg-6">
+            <div class="mb-4">
+              <h4 class="mb-3">Programming</h4>
+              <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">Python</div>
+              </div>
+              <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">SQL</div>
+              </div>
+              <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">PySpark</div>
+              </div>
             </div>
-
-            <div class="resume-item">
-              <h4>Data Engineer Intern</h4>
-              <h5>January 2023 - May 2023</h5>
-              <p><em>Cleveland State University</em></p>
-              <ul>
-                <li>Developed fraud detection models using Python and Scikit-learn with 92% accuracy</li>
-                <li>Created data pipelines for student analytics using Azure Data Factory</li>
-                <li>Implemented automated data validation framework reducing manual checks by 80%</li>
-              </ul>
+            
+            <div class="mb-4">
+              <h4 class="mb-3">Tools & Frameworks</h4>
+              <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">Airflow</div>
+              </div>
+              <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Snowflake</div>
+              </div>
+              <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">dbt</div>
+              </div>
             </div>
-
-            <div class="resume-item">
-              <h4>Data Engineer</h4>
-              <h5>May 2019 - June 2021</h5>
-              <p><em>BrainyBeam Technologies Pvt. Ltd.</em></p>
-              <ul>
-                <li>Designed and implemented data warehouse solution for manufacturing analytics</li>
-                <li>Built ETL processes reducing data processing time from 6 hours to 45 minutes</li>
-                <li>Developed predictive maintenance models reducing equipment downtime by 30%</li>
-              </ul>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- Certifications -->
+      <div class="container mt-5 section-title" data-aos="fade-up">
+        <h2>Certifications</h2>
+      </div>
+      
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">AWS Certified Data Analytics - Specialty</h5>
+                <p class="card-text">Validates expertise in designing and implementing AWS services to derive value from data.</p>
+              </div>
             </div>
-
+          </div>
+          <div class="col-lg-6">
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">Google Cloud Professional Data Engineer</h5>
+                <p class="card-text">Demonstrates ability to design and build data processing systems on GCP.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">Databricks Certified Data Engineer Associate</h5>
+                <p class="card-text">Validates skills in using Databricks to build data pipelines and perform ETL.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">Microsoft Certified: Azure Data Engineer Associate</h5>
+                <p class="card-text">Demonstrates expertise in integrating and transforming data on Azure.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </section><!-- /Experience Section -->
+    </section><!-- /Skills Section -->
+
+    <!-- Resume Section -->
+    <section id="resume" class="resume section bg-light">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Professional Experience</h2>
+        <p>My journey in data engineering</p>
+      </div>
+
+      <div class="container">
+        <div class="text-center mb-5">
+          <a href="assets/PDF/Dhruvil_Panchal_BA.pdf" class="btn btn-primary" download>Download Full Resume</a>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6" data-aos="fade-up">
+            <h3 class="resume-title">Summary</h3>
+            <div class="resume-item pb-0">
+              <h4>Dhruvil Panchal</h4>
+              <p><em>Innovative Data Engineer with 5+ years of experience designing, building, and maintaining scalable data pipelines and infrastructure. Specialized in cloud-based data solutions, ETL optimization, and real-time data processing. Proven ability to transform business requirements into robust technical solutions that drive data-driven decision making.</em></p>
+            </div>
+
+            <h3 class="resume-title">Education</h3>
+            <div class="resume-item">
+              <h4>Master of Science in Information Systems</h4>
+              <h5>2021 - 2023</h5>
+              <p><em>Cleveland State University, Cleveland, OH</em></p>
+              <p>Specialization in Data Engineering and Analytics</p>
+            </div>
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="resume-title">Professional Experience</h3>
+            <div class="resume-item">
+              <h4>Data Engineer</h4>
+              <h5>2024 - Present</h5>
+              <p><em>SASA (Save Ancient Studies Alliance), Teaneck, NJ</em></p>
+              <ul>
+                <li>Architected and implemented a high-volume data ingestion pipeline processing 100K+ records daily using Python and AWS services (Glue, Lambda, S3)</li>
+                <li>Optimized ETL workflows reducing processing time by 40% through parallel processing and partitioning strategies</li>
+                <li>Designed a dimensional data model for the data warehouse enabling efficient analytics and reporting</li>
+                <li>Implemented data quality checks and monitoring alerts improving data reliability by 30%</li>
+              </ul>
+            </div>
+
+            <div class="resume-item">
+              <h4>Data Engineer Consultant</h4>
+              <h5>2023 - 2024</h5>
+              <p><em>ThirthaSoft, LLC</em></p>
+              <ul>
+                <li>Developed a cloud-based data platform on AWS integrating 10+ data sources using Airflow and PySpark</li>
+                <li>Built real-time data pipelines using Kafka and Spark Streaming for financial transaction processing</li>
+                <li>Automated data lineage tracking and documentation using custom metadata management tools</li>
+                <li>Reduced infrastructure costs by 25% through right-sizing resources and implementing auto-scaling</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /Resume Section -->
 
     <!-- Contact Section -->
     <section id="contact" class="contact section">
       <div class="container section-title" data-aos="fade-up">
         <h2>Get In Touch</h2>
+        <p>Let's discuss how I can help with your data engineering needs</p>
       </div>
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4">
           <div class="col-lg-5">
             <div class="contact-info">
-              <div class="contact-item">
-                <i class="bi bi-geo-alt"></i>
-                <h4>Location:</h4>
-                <p>10834 Stellar Cir, Palm Beach Gardens, FL 33412</p>
+              <div class="contact-item d-flex">
+                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                <div>
+                  <h4>Location:</h4>
+                  <p>10834 Stellar Cir, Palm Beach Gardens, FL 33412</p>
+                </div>
               </div>
-              <div class="contact-item">
-                <i class="bi bi-phone"></i>
-                <h4>Call:</h4>
-                <p>+1 (407) 494-1791</p>
+
+              <div class="contact-item d-flex">
+                <i class="bi bi-envelope flex-shrink-0"></i>
+                <div>
+                  <h4>Email:</h4>
+                  <p>dpanchal.dp.2005@gmail.com</p>
+                </div>
               </div>
-              <div class="contact-item">
-                <i class="bi bi-envelope"></i>
-                <h4>Email:</h4>
-                <p>dpanchal.dp.2005@gmail.com</p>
+
+              <div class="contact-item d-flex">
+                <i class="bi bi-phone flex-shrink-0"></i>
+                <div>
+                  <h4>Call:</h4>
+                  <p>+1 407 494 1791</p>
+                </div>
               </div>
             </div>
           </div>
@@ -443,13 +562,22 @@
 
   </main>
 
-  <footer id="footer" class="footer position-relative data-engineering-bg">
+  <footer id="footer" class="footer">
     <div class="container">
       <div class="copyright">
         &copy; Copyright <strong><span>Dhruvil Panchal</span></strong>. All Rights Reserved
       </div>
+      <div class="credits">
+        Designed with <i class="bi bi-heart-fill text-danger"></i> by Dhruvil Panchal
+      </div>
     </div>
   </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
