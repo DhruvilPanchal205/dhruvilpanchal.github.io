@@ -10,17 +10,17 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #FBF1DE;           /* warm butter paper */
-    --card: #FFFDF8;         /* warm white for cards */
-    --ink: #2E2A24;          /* warm near-black */
-    --ink-soft: #6B6156;     /* warm taupe body text */
-    --ink-ghost: #A79C8E;    /* faint warm grey */
-    --amber: #E2963A;        /* primary accent — honey/marigold */
-    --amber-deep: #C97A22;
-    --teal: #2F6F62;         /* secondary accent — deep teal */
-    --rose: #DC6B70;         /* tertiary accent — soft rose, used sparingly */
-    --sand: #EEDFC2;         /* hairline / divider */
-    --sand-2: #F4E7CE;
+    --bg: #EDF2F1;           /* cool pale sage-grey paper */
+    --card: #FCFEFD;         /* cool crisp white for cards */
+    --ink: #1E2A2E;          /* deep cool slate */
+    --ink-soft: #57666B;     /* cool slate body text */
+    --ink-ghost: #96A3A6;    /* faint cool grey */
+    --amber: #1F6F78;        /* primary accent — deep petrol teal */
+    --amber-deep: #154F57;
+    --teal: #8C4B6C;         /* secondary accent — plum */
+    --rose: #C98A3E;         /* tertiary accent — warm mustard, used sparingly for AI highlights */
+    --sand: #DCE6E4;         /* hairline / divider */
+    --sand-2: #E4EDEB;
     --shadow: 0 10px 30px -12px rgba(46,42,36,0.18);
     --shadow-soft: 0 6px 18px -10px rgba(46,42,36,0.14);
     --display: 'Fraunces', serif;
@@ -193,7 +193,7 @@
   .hero-blob {
     position: absolute; inset: 0;
     border-radius: 44% 56% 62% 38% / 48% 42% 58% 52%;
-    background: linear-gradient(155deg, #F6D9A6 0%, #F3C489 40%, var(--rose) 100%);
+    background: linear-gradient(155deg, #CFE7E4 0%, #9DCFC9 40%, var(--teal) 100%);
     opacity: 0.9;
   }
   .hero-card {
@@ -235,7 +235,7 @@
   .about-bio { font-size: 16px; line-height: 1.85; color: var(--ink-soft); }
   .about-bio strong { color: var(--ink); font-weight: 600; }
   .about-bio .mark {
-    background: linear-gradient(to bottom, transparent 60%, #F6D9A6 60%);
+    background: linear-gradient(to bottom, transparent 60%, #CFE7E4 60%);
     font-weight: 500; color: var(--ink);
   }
 
@@ -276,7 +276,7 @@
     background: var(--sand-2);
     font-weight: 500;
   }
-  .is-ai .layer-label { background: linear-gradient(135deg, #FCEEEF, #FBE3D6); color: var(--rose); }
+  .is-ai .layer-label { background: linear-gradient(135deg, #FAF1DE, #F4E4C0); color: var(--rose); }
   .layer-tools { padding: 18px 20px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
   .tool-chip {
     display: inline-flex; align-items: center; gap: 7px;
@@ -347,7 +347,7 @@
   .resume-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
   .resume-bullets li { font-size: 13.5px; color: var(--ink-soft); line-height: 1.65; padding-left: 18px; position: relative; }
   .resume-bullets li::before { content: ''; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--amber); }
-  .resume-highlight { color: var(--ink); font-weight: 600; background: linear-gradient(to bottom, transparent 65%, #F6D9A6 65%); }
+  .resume-highlight { color: var(--ink); font-weight: 600; background: linear-gradient(to bottom, transparent 65%, #CFE7E4 65%); }
 
   /* ── EDUCATION ── */
   .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
@@ -359,11 +359,11 @@
 
   /* ── CONTACT ── */
   #contact { background: var(--ink); color: var(--bg); border-top: none; }
-  #contact .eyebrow { color: #F2C879; }
-  #contact .eyebrow::before { background: #F2C879; }
+  #contact .eyebrow { color: #E0AE5C; }
+  #contact .eyebrow::before { background: #E0AE5C; }
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; }
   .contact-heading { font-family: var(--display); font-weight: 600; font-size: clamp(32px, 3.6vw, 50px); line-height: 1.12; margin-bottom: 30px; }
-  .contact-heading em { color: #F2C879; font-style: italic; }
+  .contact-heading em { color: #E0AE5C; font-style: italic; }
   .contact-info { display: flex; flex-direction: column; gap: 4px; margin-bottom: 32px; }
   .contact-row { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(251,241,222,0.12); }
   .contact-row:last-child { border-bottom: none; }
@@ -382,11 +382,11 @@
     color: var(--bg); padding: 13px 16px; border-radius: var(--radius-sm);
     font-family: var(--body); font-size: 13.5px; outline: none; transition: border-color 0.2s; width: 100%;
   }
-  .form-input:focus, .form-textarea:focus { border-color: #F2C879; }
+  .form-input:focus, .form-textarea:focus { border-color: #E0AE5C; }
   .form-input::placeholder, .form-textarea::placeholder { color: rgba(251,241,222,0.35); }
   .form-textarea { resize: vertical; min-height: 100px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .btn-send { background: #F2C879; color: var(--ink); padding: 15px 30px; border-radius: 999px; font-family: var(--body); font-weight: 700; font-size: 13.5px; border: none; cursor: pointer; transition: all 0.25s; align-self: flex-start; }
+  .btn-send { background: #E0AE5C; color: var(--ink); padding: 15px 30px; border-radius: 999px; font-family: var(--body); font-weight: 700; font-size: 13.5px; border: none; cursor: pointer; transition: all 0.25s; align-self: flex-start; }
   .btn-send:hover { background: var(--bg); }
 
   footer { padding: 26px 0; text-align: center; }
@@ -413,6 +413,109 @@
     .projects-grid { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
     .hero-float { display: none; }
+  }
+
+  /* ── AI ASSISTANT WIDGET ── */
+  #twin-launcher {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(155deg, var(--amber) 0%, var(--amber-deep) 100%);
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 26px -10px rgba(35,71,62,0.55);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 999;
+  }
+  #twin-launcher:hover { transform: translateY(-3px); box-shadow: 0 14px 30px -10px rgba(35,71,62,0.6); }
+  #twin-launcher:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+  #twin-launcher svg { width: 25px; height: 25px; }
+  #twin-launcher .pulse {
+    position: absolute; top: -2px; right: -2px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--amber);
+    border: 2px solid var(--bg);
+    animation: twin-pulse 2.4s infinite;
+  }
+  @keyframes twin-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(226,150,58,0.5); }
+    70%  { box-shadow: 0 0 0 8px rgba(226,150,58,0); }
+    100% { box-shadow: 0 0 0 0 rgba(226,150,58,0); }
+  }
+
+  #twin-panel {
+    position: fixed;
+    bottom: 100px; right: 28px;
+    width: 380px; max-width: calc(100vw - 40px);
+    height: 560px; max-height: calc(100vh - 140px);
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 998;
+    border: 1px solid var(--sand);
+  }
+  #twin-panel.open { display: flex; }
+
+  #twin-header {
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--sand);
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--sand-2);
+  }
+  #twin-header .title {
+    font-family: var(--display); font-weight: 600; font-size: 15px; color: var(--ink);
+  }
+  #twin-header .title em { color: var(--teal); font-style: italic; }
+  #twin-status { display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10.5px; color: var(--ink-ghost); }
+  #twin-status .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--rose); }
+  #twin-status .dot.ready { background: var(--teal); }
+  #twin-close { background: none; border: none; color: var(--ink-ghost); cursor: pointer; font-size: 17px; line-height: 1; padding: 4px; }
+  #twin-close:hover { color: var(--ink); }
+
+  #twin-boot {
+    padding: 16px 18px;
+    font-family: var(--mono); font-size: 11px; color: var(--ink-soft);
+    border-bottom: 1px solid var(--sand);
+    background: var(--sand-2);
+  }
+  #twin-boot .line { margin-bottom: 8px; }
+  #twin-boot .bar-track { height: 4px; background: var(--sand); border-radius: 2px; overflow: hidden; }
+  #twin-boot .bar-fill { height: 100%; width: 0%; background: var(--teal); transition: width 0.25s ease; }
+
+  #twin-messages {
+    flex: 1; overflow-y: auto;
+    padding: 18px; display: flex; flex-direction: column; gap: 12px;
+    background: var(--card);
+  }
+  .twin-msg { max-width: 85%; padding: 11px 14px; border-radius: 14px; font-size: 13.5px; line-height: 1.55; white-space: pre-wrap; }
+  .twin-msg.user { align-self: flex-end; background: var(--amber); color: var(--card); border-bottom-right-radius: 3px; }
+  .twin-msg.bot { align-self: flex-start; background: var(--sand-2); border: 1px solid var(--sand); color: var(--ink); border-bottom-left-radius: 3px; }
+  .twin-msg.system-note { align-self: center; color: var(--ink-ghost); font-family: var(--mono); font-size: 11px; background: none; }
+
+  #twin-inputrow { display: flex; gap: 8px; padding: 14px; border-top: 1px solid var(--sand); background: var(--sand-2); }
+  #twin-input {
+    flex: 1; background: var(--card); border: 1px solid var(--sand); color: var(--ink);
+    border-radius: var(--radius-sm); padding: 10px 13px;
+    font-family: var(--body); font-size: 13.5px; resize: none;
+  }
+  #twin-input:focus { outline: none; border-color: var(--amber); }
+  #twin-send {
+    background: var(--ink); color: var(--card); border: none;
+    border-radius: var(--radius-sm); padding: 0 18px; cursor: pointer;
+    font-weight: 600; font-size: 13px; transition: background 0.2s;
+  }
+  #twin-send:disabled { background: var(--ink-ghost); cursor: not-allowed; }
+  #twin-send:hover:not(:disabled) { background: var(--amber-deep); }
+
+  @media (prefers-reduced-motion: reduce) { #twin-launcher .pulse { animation: none; } }
+  @media (max-width: 480px) {
+    #twin-panel { right: 12px; bottom: 92px; }
+    #twin-launcher { right: 16px; bottom: 16px; }
   }
 </style>
 </head>
@@ -858,8 +961,8 @@
     e.preventDefault();
     const btn = e.target.querySelector('.btn-send');
     btn.textContent = 'Message sent ✓';
-    btn.style.background = '#2F6F62';
-    btn.style.color = '#FBF1DE';
+    btn.style.background = '#1F6F78';
+    btn.style.color = '#EDF2F1';
     setTimeout(() => {
       btn.textContent = 'Send message →';
       btn.style.background = '';
@@ -867,6 +970,203 @@
       e.target.reset();
     }, 3000);
   }
+</script>
+
+<!-- AI ASSISTANT WIDGET -->
+<button id="twin-launcher" aria-label="Ask an AI about Dhruvil's work" aria-expanded="false" aria-controls="twin-panel">
+  <span class="pulse"></span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="#FCFEFD" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2a3 3 0 0 1 3 3v3a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3Z"/>
+    <path d="M19 11v1a7 7 0 0 1-14 0v-1"/>
+    <path d="M12 19v3M8 22h8"/>
+  </svg>
+</button>
+
+<div id="twin-panel" role="dialog" aria-label="AI assistant chat">
+  <div id="twin-header">
+    <div class="title">Ask about <em>Dhruvil</em></div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <div id="twin-status"><span class="dot" id="twin-dot"></span><span id="twin-status-text">offline</span></div>
+      <button id="twin-close" aria-label="Close chat">✕</button>
+    </div>
+  </div>
+
+  <div id="twin-boot">
+    <div class="line" id="twin-boot-line">Click to load the assistant (~700MB, runs fully in your browser — cached after first visit).</div>
+    <div class="bar-track"><div class="bar-fill" id="twin-boot-bar"></div></div>
+  </div>
+
+  <div id="twin-messages"></div>
+
+  <div id="twin-inputrow">
+    <textarea id="twin-input" rows="1" placeholder="Ask about projects, skills, experience…" disabled></textarea>
+    <button id="twin-send" disabled>Send</button>
+  </div>
+</div>
+
+<script type="module">
+  import * as webllm from "https://esm.run/@mlc-ai/web-llm";
+
+  const PROFILE = {
+    name: "Dhruvil Panchal",
+    tagline: "Data Analyst focused on AI & Analytics — turning data into decisions with AI at the core.",
+    bio: `Dhruvil is a data analyst with 3+ years of experience collecting, cleaning, and analyzing large
+      datasets to deliver insights that change decisions. His recent work sits at the intersection of
+      analytics and AI: prompt engineering, LLM API integration (OpenAI and Claude), agentic workflows,
+      and RAG pipelines, built on a solid data engineering foundation of dbt, Kafka, Spark Structured
+      Streaming, and warehouses like Snowflake, Redshift, and BigQuery. His background spans financial
+      services, e-commerce analytics, and enterprise BI.`,
+    projects: [
+      "AI-Augmented Finance Complaints Classifier — Python/SQL ETL feeding Logistic Regression and Random Forest models at 85%+ accuracy, with NLP preprocessing and LLM-assisted labeling that cut annotation time by 50% across 10,000+ complaint records.",
+      "Real-Time AI-Ready Clickstream Pipeline — Kafka + Spark Structured Streaming + AWS Redshift pipeline processing 500K+ daily events, with an AI-ready schema for downstream churn and recommendation models.",
+      "Modern ELT Pipeline with dbt — production-grade ELT pipeline using dbt Core, Snowflake, and Airflow with automated data quality tests and CI/CD via GitHub Actions.",
+      "Cloud Data Warehouse for Adidas US Sales — Snowflake-based warehouse with dbt transformations, star-schema modeling, and a Tableau reporting layer.",
+      "Geospatial Job Market Analysis — geospatial data processing for NYC job market analytics using Python and GeoPandas, with automated Airflow DAGs and PostgreSQL.",
+      "ETL Pipeline for Financial Data — scalable pipeline processing 100K+ financial transactions daily using Python and AWS Glue."
+    ],
+    skills: "Prompt engineering, LLM integration, RAG/agentic workflows, ETL/ELT pipelines, data warehousing, data modeling, Python, SQL, Power BI, Tableau, AWS, Snowflake, dbt, Azure, GCP.",
+    experience: [
+      "Data Analyst · AI & Analytics at ThirthaSoft, LLC (Jul 2023 – May 2026): built 15+ dbt models and AI-assisted ETL workflows, integrated LLM-based summarization into Power BI dashboards cutting ad-hoc reporting time by 60%, and ran A/B testing with AI-assisted anomaly detection.",
+      "IT Intern — BI & Data Support at ITHENA (Jun 2022 – Aug 2022): supported ETL processes and SQL performance tuning for client-facing BI reports.",
+      "Data Engineer at BrainyBeam Technologies (2019 – 2021): designed SQL queries and ETL workflows managing 1M+ records, improving query performance by 30%."
+    ],
+    education: "Doctor of Business Administration (in progress, University of Potomac); M.S. Business Information Systems, Cleveland State University (Beta Gamma Sigma Honor Society); B.S. Computer Science, Gujarat Technological University.",
+    certifications: "dbt Fundamentals (dbt Labs), Data Warehousing & Collaboration (Snowflake), Entry Certificate in Business Analysis (IIBA ECBA), SQL Intermediate (HackerRank).",
+    lookingFor: "Full-time or contract Data Analyst / AI & Analytics roles, open to relocating from New York, NY.",
+    contact: "dpanchal.dp.2005@gmail.com · github.com/dhruvilpanchal205 · linkedin.com/in/dhruvilpanchal"
+  };
+
+  const MODEL_ID = "Llama-3.2-1B-Instruct-q4f16_1-MLC";
+  // For slower devices/phones, swap in a smaller model instead:
+  // const MODEL_ID = "Qwen2.5-0.5B-Instruct-q4f16_1-MLC";
+
+  const systemPrompt = `You are a friendly assistant embedded on ${PROFILE.name}'s portfolio website.
+You answer visitor questions about ${PROFILE.name} using ONLY the facts below. Be concise (2-4 sentences
+unless asked for detail), warm, and speak about ${PROFILE.name} in the third person ("Dhruvil built...", not "I built...").
+If asked something not covered by these facts, say you don't have that information and suggest they reach out directly
+via the contact info below. If someone seems to be a recruiter or hiring manager, feel free to highlight the "looking for" info.
+
+FACTS:
+Tagline: ${PROFILE.tagline}
+Bio: ${PROFILE.bio}
+Projects:
+${PROFILE.projects.map((p) => "- " + p).join("\n")}
+Skills: ${PROFILE.skills}
+Experience:
+${PROFILE.experience.map((e) => "- " + e).join("\n")}
+Education: ${PROFILE.education}
+Certifications: ${PROFILE.certifications}
+Currently looking for: ${PROFILE.lookingFor}
+Contact: ${PROFILE.contact}`;
+
+  const launcher = document.getElementById("twin-launcher");
+  const panel = document.getElementById("twin-panel");
+  const closeBtn = document.getElementById("twin-close");
+  const messagesEl = document.getElementById("twin-messages");
+  const inputEl = document.getElementById("twin-input");
+  const sendBtn = document.getElementById("twin-send");
+  const dot = document.getElementById("twin-dot");
+  const statusText = document.getElementById("twin-status-text");
+  const bootLine = document.getElementById("twin-boot-line");
+  const bootBar = document.getElementById("twin-boot-bar");
+  const bootBox = document.getElementById("twin-boot");
+
+  let engine = null;
+  let engineReady = false;
+  let engineLoading = false;
+  let history = [{ role: "system", content: systemPrompt }];
+
+  function addMessage(role, text) {
+    const div = document.createElement("div");
+    div.className = "twin-msg " + (role === "user" ? "user" : role === "system-note" ? "system-note" : "bot");
+    div.textContent = text;
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    return div;
+  }
+
+  async function loadEngine() {
+    if (engineLoading || engineReady) return;
+    engineLoading = true;
+
+    if (!navigator.gpu) {
+      bootLine.textContent = "This browser doesn't support WebGPU. Try the latest Chrome or Edge on desktop.";
+      addMessage("system-note", "AI unavailable in this browser — try Chrome or Edge on desktop.");
+      engineLoading = false;
+      return;
+    }
+
+    try {
+      engine = new webllm.MLCEngine();
+      engine.setInitProgressCallback((report) => {
+        bootLine.textContent = report.text;
+        const pct = Math.round((report.progress || 0) * 100);
+        bootBar.style.width = pct + "%";
+      });
+      await engine.reload(MODEL_ID);
+      engineReady = true;
+      dot.classList.add("ready");
+      statusText.textContent = "ready";
+      bootBox.style.display = "none";
+      inputEl.disabled = false;
+      sendBtn.disabled = false;
+      addMessage("bot", "Hi! I'm an AI running right in your browser, and I can answer questions about Dhruvil's background, projects, and skills. Ask me anything.");
+      inputEl.focus();
+    } catch (err) {
+      bootLine.textContent = "Couldn't load the model: " + err.message;
+      addMessage("system-note", "Something went wrong loading the model. Check the console for details.");
+      console.error(err);
+    } finally {
+      engineLoading = false;
+    }
+  }
+
+  async function sendMessage() {
+    const text = inputEl.value.trim();
+    if (!text || !engineReady) return;
+    inputEl.value = "";
+    addMessage("user", text);
+    history.push({ role: "user", content: text });
+    sendBtn.disabled = true;
+    inputEl.disabled = true;
+
+    const botDiv = addMessage("bot", "…");
+    try {
+      const reply = await engine.chat.completions.create({
+        messages: history,
+        temperature: 0.6,
+        max_tokens: 300,
+      });
+      const content = reply.choices[0].message.content;
+      botDiv.textContent = content;
+      history.push({ role: "assistant", content });
+    } catch (err) {
+      botDiv.textContent = "Sorry, something went wrong generating a response.";
+      console.error(err);
+    } finally {
+      sendBtn.disabled = false;
+      inputEl.disabled = false;
+      inputEl.focus();
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+  }
+
+  launcher.addEventListener("click", () => {
+    const isOpen = panel.classList.toggle("open");
+    launcher.setAttribute("aria-expanded", String(isOpen));
+    if (isOpen) loadEngine();
+  });
+  closeBtn.addEventListener("click", () => {
+    panel.classList.remove("open");
+    launcher.setAttribute("aria-expanded", "false");
+  });
+  sendBtn.addEventListener("click", sendMessage);
+  inputEl.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
 </script>
 
 </body>
