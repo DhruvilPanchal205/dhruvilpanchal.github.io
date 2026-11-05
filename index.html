@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dhruvil Panchal — Analytics Engineer</title>
-<meta name="description" content="Analytics engineer building governed semantic layers on Snowflake and dbt, and measuring whether AI-generated answers on top of them are actually correct.">
+<meta name="description" content="Analytics engineer bridging business, data engineering and AI: governed semantic layers on Snowflake and dbt, and measured accuracy for AI answers built on top of them.">
 <meta name="theme-color" content="#F7F8FA">
 <meta property="og:title" content="Dhruvil Panchal — Analytics Engineer">
-<meta property="og:description" content="Governed semantic layers on Snowflake and dbt, and measured accuracy for AI answers built on top of them.">
+<meta property="og:description" content="Business questions in, governed data out, AI answers measured for accuracy. Snowflake · dbt · Airflow · Python · LLMs.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://dhruvilpanchal205.github.io/dhruvilpanchal.github.io/">
 
@@ -18,12 +18,10 @@
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 
   :root{
-    /* Light theme. The accents are darkened versions of the originals:
-       #5B9DFF and #34D399 fail contrast on white, so text and borders use
-       deeper values while the soft tints stay light for fills. */
     --bg:#F7F8FA;
     --surface:#FFFFFF;
     --surface-2:#F1F3F7;
+    --band:#EEF1F6;
     --line:#DFE3EA;
     --line-soft:#EBEEF3;
     --text:#0F1319;
@@ -39,363 +37,318 @@
     --queued:#8C5E07;
     --queued-soft:rgba(169,114,10,.09);
     --queued-line:#E7D4A4;
+    --violet:#6D4BD1;
+    --violet-soft:rgba(109,75,209,.08);
+    --violet-line:#D4C8F4;
 
-    /* On a light page, elevation separates cards. Borders alone read flat. */
     --shadow-sm:0 1px 2px rgba(15,23,42,.04), 0 1px 1px rgba(15,23,42,.03);
     --shadow-md:0 4px 14px -6px rgba(15,23,42,.12), 0 1px 3px rgba(15,23,42,.05);
-    --shadow-lg:0 18px 38px -20px rgba(15,23,42,.26), 0 2px 6px rgba(15,23,42,.05);
+    --shadow-lg:0 22px 44px -24px rgba(15,23,42,.30), 0 2px 6px rgba(15,23,42,.05);
 
     --display:'Space Grotesk',sans-serif;
     --sans:'Inter',sans-serif;
     --mono:'IBM Plex Mono',monospace;
-    --measure:860px;
+    --measure:880px;
+    --wide:1080px;
     --nav-h:60px;
-
-    /* One easing curve everywhere. Mixed curves are what make motion feel
-       restless rather than smooth. */
     --ease:cubic-bezier(.22,.61,.36,1);
   }
 
-  html{
-    scroll-behavior:smooth;
-    /* Anchors previously landed underneath the sticky header. Fixed. */
-    scroll-padding-top:calc(var(--nav-h) + 20px);
-    -webkit-text-size-adjust:100%;
-  }
-
+  html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 20px);-webkit-text-size-adjust:100%;}
   body{
     font-family:var(--sans);background:var(--bg);color:var(--text);font-size:16px;line-height:1.6;
-    background-image:radial-gradient(circle at 1px 1px, rgba(15,23,42,.055) 1px, transparent 0);
-    background-size:26px 26px;
-    overflow-x:hidden;
+    background-image:radial-gradient(circle at 1px 1px, rgba(15,23,42,.05) 1px, transparent 0);
+    background-size:26px 26px;overflow-x:hidden;
   }
   ::selection{background:rgba(37,99,201,.18);color:var(--text);}
   a{color:inherit;}
 
   .wrap{max-width:var(--measure);margin:0 auto;padding:0 28px;}
+  .wrap-wide{max-width:var(--wide);margin:0 auto;padding:0 28px;}
   section{padding:84px 0;scroll-margin-top:calc(var(--nav-h) + 16px);}
   section+section{border-top:1px solid var(--line-soft);}
 
   .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--text-faint);
     margin-bottom:14px;display:flex;align-items:center;gap:8px;}
   .eyebrow .stage-id{color:var(--running);}
-
   .section-title{font-family:var(--display);font-weight:600;font-size:clamp(23px,2.6vw,31px);
-    line-height:1.22;color:var(--text);margin-bottom:14px;max-width:600px;letter-spacing:-.015em;}
-  .section-sub{font-size:14.5px;color:var(--text-soft);max-width:580px;margin-bottom:36px;line-height:1.7;}
-  .section-title + .skills-cols,
-  .section-title + .track,
-  .section-title + .projects-body{margin-top:34px;}
+    line-height:1.22;color:var(--text);margin-bottom:12px;max-width:640px;letter-spacing:-.015em;}
+  .section-sub{font-size:14.5px;color:var(--text-soft);max-width:600px;margin-bottom:34px;line-height:1.7;}
 
-  /* ========================================================================
-     SCROLL PROGRESS — a thin line that fills as you move down the page.
-     Justified by the subject: this site is a pipeline run, and a run has
-     progress. It also gives a recruiter a constant read on how much is left,
-     which is the cheapest way to keep someone scrolling to the end.
-     ======================================================================== */
+  /* ---------- scroll progress ---------- */
   .progress-track{position:fixed;top:0;left:0;right:0;height:2px;z-index:100;pointer-events:none;}
   .progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--running),var(--success));
     box-shadow:0 0 8px rgba(37,99,201,.28);transition:width .1s linear;}
 
-  /* ---- status bar ---- */
-  .statusbar{background:var(--surface-2);border-bottom:1px solid var(--line);
-    font-family:var(--mono);font-size:11px;color:var(--text-faint);}
-  .statusbar-inner{max-width:var(--measure);margin:0 auto;padding:8px 28px;display:flex;gap:16px;
-    align-items:center;flex-wrap:wrap;}
+  /* ---------- status bar ---------- */
+  .statusbar{background:var(--surface-2);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--text-faint);}
+  .statusbar-inner{max-width:var(--measure);margin:0 auto;padding:8px 28px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
   .statusbar .sep{color:var(--line);}
-  .live-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--success);
-    margin-right:7px;box-shadow:0 0 0 0 rgba(14,143,99,.45);animation:pulse-ring 2.4s ease-out infinite;}
+  .live-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--success);margin-right:7px;
+    animation:pulse-ring 2.4s ease-out infinite;}
   @keyframes pulse-ring{0%{box-shadow:0 0 0 0 rgba(14,143,99,.4);}70%{box-shadow:0 0 0 7px rgba(14,143,99,0);}100%{box-shadow:0 0 0 0 rgba(14,143,99,0);}}
 
-  /* ---- nav ---- */
-  header{position:sticky;top:0;z-index:60;
-    background:rgba(255,255,255,.74);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    border-bottom:1px solid transparent;
+  /* ---------- nav ---------- */
+  header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.74);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;
     transition:background .35s var(--ease),border-color .35s var(--ease),box-shadow .35s var(--ease);}
-  /* The header sits flush at the top and separates itself only once it
-     starts overlapping content. */
-  header.stuck{background:rgba(255,255,255,.93);border-bottom-color:var(--line);
-    box-shadow:0 6px 22px -16px rgba(15,23,42,.35);}
-
+  header.stuck{background:rgba(255,255,255,.93);border-bottom-color:var(--line);box-shadow:0 6px 22px -16px rgba(15,23,42,.35);}
   .nav-inner{max-width:var(--measure);margin:0 auto;padding:0 28px;height:var(--nav-h);
     display:flex;align-items:center;justify-content:space-between;gap:16px;}
   .brand{font-family:var(--mono);font-size:13px;font-weight:500;text-decoration:none;color:var(--text);white-space:nowrap;}
   .brand span{color:var(--text-faint);}
-
-  .nav-links{display:flex;gap:4px;list-style:none;}
+  .nav-links{display:flex;gap:2px;list-style:none;}
   .nav-links a{font-size:12.5px;color:var(--text-soft);text-decoration:none;font-family:var(--mono);
-    padding:7px 11px;border-radius:7px;transition:color .25s var(--ease),background .25s var(--ease);}
+    padding:7px 10px;border-radius:7px;transition:color .25s var(--ease),background .25s var(--ease);}
   .nav-links a:hover{color:var(--text);background:var(--surface-2);}
-  /* Active-section highlight: the reader always knows where they are, and the
-     nav quietly maps the document for them. */
   .nav-links a.active{color:var(--running);background:var(--running-soft);}
-
   .nav-right{display:flex;align-items:center;gap:10px;}
-  .nav-cta{font-family:var(--mono);font-size:11.5px;color:#fff;background:var(--text);
-    padding:8px 15px;border-radius:20px;text-decoration:none;white-space:nowrap;
-    transition:background .25s var(--ease),color .25s var(--ease),transform .25s var(--ease);}
-  .nav-cta:hover{background:var(--running);color:#fff;transform:translateY(-1px);}
+  .nav-cta{font-family:var(--mono);font-size:11.5px;color:#fff;background:var(--text);padding:8px 15px;border-radius:20px;
+    text-decoration:none;white-space:nowrap;transition:background .25s var(--ease),transform .25s var(--ease);}
+  .nav-cta:hover{background:var(--running);transform:translateY(-1px);}
 
-  /* Mobile menu button. The old build hid navigation entirely below 760px,
-     which matters because a large share of recruiters open links on a phone. */
-  .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:8px;
-    width:38px;height:34px;cursor:pointer;position:relative;transition:border-color .25s var(--ease);}
-  .menu-btn:hover{border-color:var(--running);}
-  .menu-btn span{position:absolute;left:10px;right:10px;height:1.5px;background:var(--text);
-    transition:transform .3s var(--ease),opacity .2s var(--ease);}
-  .menu-btn span:nth-child(1){top:12px;}
-  .menu-btn span:nth-child(2){top:17px;}
-  .menu-btn span:nth-child(3){top:22px;}
+  .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:8px;width:38px;height:34px;cursor:pointer;position:relative;}
+  .menu-btn span{position:absolute;left:10px;right:10px;height:1.5px;background:var(--text);transition:transform .3s var(--ease),opacity .2s var(--ease);}
+  .menu-btn span:nth-child(1){top:12px;} .menu-btn span:nth-child(2){top:17px;} .menu-btn span:nth-child(3){top:22px;}
   .menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(5px) rotate(45deg);}
   .menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0;}
   .menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-5px) rotate(-45deg);}
-
-  .mobile-menu{display:none;border-top:1px solid var(--line);background:rgba(255,255,255,.98);
-    backdrop-filter:blur(14px);overflow:hidden;max-height:0;transition:max-height .4s var(--ease);}
-  .mobile-menu.open{max-height:360px;}
+  .mobile-menu{display:none;border-top:1px solid var(--line);background:rgba(255,255,255,.98);overflow:hidden;max-height:0;transition:max-height .4s var(--ease);}
+  .mobile-menu.open{max-height:420px;}
   .mobile-menu ul{list-style:none;padding:8px 28px 16px;}
-  .mobile-menu a{display:block;padding:12px 0;font-family:var(--mono);font-size:14px;
-    color:var(--text-soft);text-decoration:none;border-bottom:1px solid var(--line-soft);}
-  .mobile-menu a:last-child{border-bottom:none;}
-  .mobile-menu a:hover,.mobile-menu a.active{color:var(--running);}
+  .mobile-menu a{display:block;padding:12px 0;font-family:var(--mono);font-size:14px;color:var(--text-soft);text-decoration:none;border-bottom:1px solid var(--line-soft);}
+  .mobile-menu li:last-child a{border-bottom:none;}
+  .mobile-menu a.active{color:var(--running);}
 
-  /* ---- DAG primitives ---- */
-  .dag-node{border:1px solid var(--line);background:var(--surface);border-radius:9px;
-    padding:12px 15px;min-width:150px;display:flex;flex-direction:column;gap:5px;}
-  .dag-node .node-status{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:9.5px;letter-spacing:.05em;}
-  .dag-node .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-  .dag-node.success{border-color:var(--success-line);background:rgba(14,143,99,.04);}
-  .dag-node.success .dot{background:var(--success);}
-  .dag-node.success .node-status{color:var(--success);}
-  .dag-node.running{border-color:var(--running-line);background:var(--running-soft);}
-  .dag-node.running .dot{background:var(--running);animation:blip 1.8s ease-in-out infinite;}
-  .dag-node.running .node-status{color:var(--running);}
-  .dag-node.queued{border-color:var(--queued-line);border-style:dashed;background:var(--queued-soft);}
-  .dag-node.queued .dot{background:var(--queued);animation:blip-amber 1.8s ease-in-out infinite;}
-  .dag-node.queued .node-status{color:var(--queued);}
-  @keyframes blip{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(37,99,201,.4);}50%{opacity:.7;box-shadow:0 0 0 5px rgba(37,99,201,0);}}
-  @keyframes blip-amber{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(169,114,10,.4);}50%{opacity:.7;box-shadow:0 0 0 5px rgba(169,114,10,0);}}
-  .dag-node .node-title{font-family:var(--sans);font-weight:600;font-size:13.5px;color:var(--text);line-height:1.35;}
-  .dag-node .node-date{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);}
+  /* ---------- hero ---------- */
+  #hero{padding-top:60px;padding-bottom:64px;position:relative;}
+  #hero::before{content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:820px;max-width:100%;height:440px;pointer-events:none;
+    background:radial-gradient(ellipse at center, rgba(37,99,201,.11), transparent 66%);filter:blur(16px);}
+  #hero .wrap,#hero .wrap-wide{position:relative;}
+  .hero-head{text-align:center;}
+  .run-header{font-family:var(--mono);font-size:11px;color:var(--text-faint);display:flex;gap:8px;align-items:center;margin-bottom:22px;flex-wrap:wrap;justify-content:center;}
+  .run-header .tag{background:var(--surface);border:1px solid var(--line);padding:4px 10px;border-radius:6px;}
+  h1.hero-name{font-family:var(--display);font-size:clamp(38px,6vw,60px);font-weight:700;letter-spacing:-.025em;line-height:1.02;}
+  .hero-role{font-family:var(--mono);color:var(--running);font-size:clamp(12.5px,1.5vw,15px);margin-top:12px;}
+  .hero-tagline{font-size:clamp(15.5px,1.7vw,18px);line-height:1.65;color:var(--text-soft);margin:20px auto 0;max-width:640px;}
+  .hero-tagline strong{color:var(--text);font-weight:600;}
 
-  .dag-arrow{position:relative;width:26px;height:2px;background:var(--line);flex-shrink:0;margin:0 2px;align-self:center;}
-  .dag-arrow::after{content:'';position:absolute;right:-1px;top:50%;transform:translateY(-50%);width:0;height:0;
-    border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid var(--line);}
-  .dag-arrow .flow-dot{position:absolute;top:50%;left:0;width:4px;height:4px;border-radius:50%;
-    background:var(--running);transform:translateY(-50%);animation:flow 2.6s linear infinite;}
-  @keyframes flow{0%{left:0;opacity:0;}12%{opacity:1;}88%{opacity:1;}100%{left:100%;opacity:0;}}
-
-  /* ---- hero ---- */
-  #hero{padding-top:64px;padding-bottom:56px;position:relative;}
-  /* One atmospheric moment, at the top only, rather than effects everywhere. */
-  #hero::before{content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);
-    width:760px;height:430px;pointer-events:none;
-    background:radial-gradient(ellipse at center, rgba(37,99,201,.10), transparent 66%);filter:blur(16px);}
-  #hero .wrap{position:relative;}
-
-  .run-header{font-family:var(--mono);font-size:11px;color:var(--text-faint);
-    display:flex;gap:9px;align-items:center;margin-bottom:24px;flex-wrap:wrap;justify-content:center;}
-  .run-header .tag{background:var(--surface-2);border:1px solid var(--line);padding:4px 10px;border-radius:6px;}
-
-  h1.hero-name{font-family:var(--display);font-size:clamp(36px,6vw,58px);font-weight:700;letter-spacing:-.025em;line-height:1.02;}
-  .hero-role{font-family:var(--mono);color:var(--running);font-size:clamp(12.5px,1.5vw,15px);margin-top:11px;}
-  .hero-tagline{font-size:clamp(15px,1.6vw,17.5px);line-height:1.65;color:var(--text-soft);margin:22px auto 0;max-width:620px;}
-
-  /* ========================================================================
-     SCAN STRIP — the ten-second read.
-     A recruiter's first pass answers four questions: what are they, what do
-     they run on, where are they, can they start. Answering those above the
-     fold is what buys the sixty-second read underneath.
-     ======================================================================== */
-  .scan-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-soft);
-    border:1px solid var(--line);border-radius:11px;overflow:hidden;margin:38px 0 0;}
-  .scan-cell{background:var(--surface);padding:16px 14px;text-align:left;}
-  .scan-cell .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--text-faint);margin-bottom:6px;}
-  .scan-cell .v{font-size:13.5px;font-weight:600;color:var(--text);line-height:1.35;}
-  .scan-cell .v.go{color:var(--success);}
-  @media(max-width:680px){.scan-strip{grid-template-columns:1fr 1fr;}}
-
-  .dag-wrap{margin-top:42px;}
-  .dag-label{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--text-faint);margin-bottom:12px;}
-  .dag-foundations{display:flex;gap:34px;justify-content:center;flex-wrap:wrap;}
-  .dag-foundations .dag-node{min-width:200px;}
-  .merge-svg{display:block;width:2px;height:26px;margin:0 auto;background:var(--line);position:relative;}
-  .merge-svg::after{content:'';position:absolute;left:50%;bottom:-1px;transform:translateX(-50%);width:0;height:0;
-    border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid var(--line);}
-  .dag-trunk{display:flex;align-items:stretch;flex-wrap:wrap;justify-content:center;margin-top:10px;}
-  .dag-trunk .dag-node{flex:1 1 150px;}
-
-  @media(max-width:780px){
-    .dag-trunk{flex-direction:column;align-items:stretch;}
-    .dag-arrow{width:2px;height:22px;margin:0 auto;}
-    .dag-arrow::after{right:auto;left:50%;top:auto;bottom:-1px;transform:translateX(-50%);
-      border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid var(--line);border-bottom:none;}
-    .dag-arrow .flow-dot{animation:flow-v 2.6s linear infinite;left:50%;top:0;transform:translateX(-50%);}
-  }
-  @keyframes flow-v{0%{top:0;opacity:0;}12%{opacity:1;}88%{opacity:1;}100%{top:100%;opacity:0;}}
-
-  .hero-actions{display:flex;gap:11px;margin-top:40px;flex-wrap:wrap;justify-content:center;}
+  .hero-actions{display:flex;gap:11px;margin-top:30px;flex-wrap:wrap;justify-content:center;}
   .btn{font-family:var(--mono);font-size:12.5px;padding:12px 21px;border-radius:24px;text-decoration:none;display:inline-block;
     transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease);}
   .btn-solid{background:var(--text);color:#fff;}
-  .btn-solid:hover{background:var(--running);color:#fff;transform:translateY(-2px);}
+  .btn-solid:hover{background:var(--running);transform:translateY(-2px);}
   .btn-outline{border:1px solid var(--line);color:var(--text);background:var(--surface);}
   .btn-outline:hover{border-color:var(--running);color:var(--running);transform:translateY(-2px);}
 
-  /* ---- about ---- */
-  .about-panel{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:28px 30px;}
-  .about-text{font-size:15px;color:var(--text-soft);line-height:1.78;max-width:70ch;}
+  /* ---------- live lineage panel ---------- */
+  .lineage{margin-top:44px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-lg);overflow:hidden;}
+  .lineage-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px;
+    border-bottom:1px solid var(--line-soft);background:var(--surface-2);font-family:var(--mono);font-size:11px;color:var(--text-faint);flex-wrap:wrap;}
+  .lineage-bar .left{display:flex;align-items:center;gap:12px;}
+  .win-dots{display:flex;gap:5px;}
+  .win-dots span{width:9px;height:9px;border-radius:50%;background:#D9DEE6;}
+  .lineage-title{color:var(--text-soft);}
+  .run-pill{display:inline-flex;align-items:center;gap:7px;padding:3px 10px;border-radius:20px;border:1px solid var(--line);background:var(--surface);color:var(--text-soft);}
+  .run-pill .pd{width:6px;height:6px;border-radius:50%;background:var(--text-faint);}
+  .run-pill.running{border-color:var(--running-line);color:var(--running);background:var(--running-soft);}
+  .run-pill.running .pd{background:var(--running);animation:blip 1.4s ease-in-out infinite;}
+  .run-pill.success{border-color:var(--success-line);color:var(--success);background:var(--success-soft);}
+  .run-pill.success .pd{background:var(--success);}
+  @keyframes blip{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(37,99,201,.4);}50%{opacity:.7;box-shadow:0 0 0 5px rgba(37,99,201,0);}}
+
+  .lineage-canvas{position:relative;padding:10px 4px 6px;}
+  #lineage-svg{display:block;width:100%;height:auto;overflow:visible;}
+  .ln-layer{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;fill:var(--text-faint);text-transform:uppercase;}
+  .ln-edge{fill:none;stroke:#D3D9E2;stroke-width:1.3;transition:stroke .3s var(--ease),opacity .3s var(--ease),stroke-width .3s var(--ease);}
+  .ln-edge.hot{stroke:var(--running);stroke-width:1.9;}
+  .ln-particle{fill:var(--running);pointer-events:none;}
+  .ln-node{cursor:pointer;transition:opacity .3s var(--ease);}
+  .ln-node rect{fill:var(--surface);stroke:var(--line);stroke-width:1;transition:stroke .3s var(--ease),fill .3s var(--ease);}
+  .ln-node .dot{fill:#C4CAD4;transition:fill .3s var(--ease);}
+  .ln-node .t{font-family:var(--mono);font-size:11px;font-weight:500;fill:var(--text);}
+  .ln-node .s{font-family:var(--mono);font-size:9px;fill:var(--text-faint);}
+  .ln-node.sem rect{fill:#F4F8FE;stroke:var(--running-line);}
+  .ln-node.ai rect{fill:#F8F6FE;stroke:var(--violet-line);}
+  .ln-node.running rect{stroke:var(--running);fill:#EDF3FD;}
+  .ln-node.running .dot{fill:var(--running);}
+  .ln-node.done .dot{fill:var(--success);}
+  .ln-node:hover rect{stroke:var(--running);}
+  .ln-node.sel rect{stroke:var(--running);stroke-width:2;}
+  .ln-node:focus{outline:none;}
+  .ln-node:focus-visible rect{stroke:var(--running);stroke-width:2.2;}
+  .dimmed{opacity:.2;}
+
+  .lineage-foot{display:grid;grid-template-columns:1.35fr 1fr;border-top:1px solid var(--line-soft);}
+  .node-detail{padding:16px 20px;border-right:1px solid var(--line-soft);min-height:142px;}
+  .nd-kicker{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--text-faint);margin-bottom:6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+  .nd-badge{padding:2px 8px;border-radius:12px;border:1px solid var(--line);background:var(--surface-2);color:var(--text-soft);}
+  .nd-badge.sem{color:var(--running);border-color:var(--running-line);background:var(--running-soft);}
+  .nd-badge.ai{color:var(--violet);border-color:var(--violet-line);background:var(--violet-soft);}
+  .nd-title{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;}
+  .nd-text{font-size:13.5px;color:var(--text-soft);line-height:1.62;}
+  .nd-meta{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);margin-top:10px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+  .nd-clear{font-family:var(--mono);font-size:10.5px;color:var(--running);background:none;border:none;cursor:pointer;padding:0;}
+  .nd-clear:hover{text-decoration:underline;}
+
+  .run-log{background:#10151D;color:#B9C3D0;font-family:var(--mono);font-size:11px;line-height:1.75;padding:14px 16px;min-height:142px;}
+  .run-log .head{color:#6E7A8A;margin-bottom:4px;}
+  .log-line{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;animation:logIn .35s var(--ease);}
+  .log-line .ts{color:#5E6A7A;margin-right:8px;}
+  .log-line .ok{color:#4ADE9B;}
+  .log-line .cmd{color:#7FB0FF;}
+  .log-line .dur{color:#6E7A8A;float:right;margin-left:8px;}
+  @keyframes logIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+  .lineage-note{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);text-align:center;margin-top:12px;}
+
+  /* ---------- quick read: scan strip + numbers ---------- */
+  .scan-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:11px;overflow:hidden;margin-top:28px;box-shadow:var(--shadow-sm);}
+  .scan-cell{background:var(--surface);padding:15px 16px;}
+  .scan-cell .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--text-faint);margin-bottom:5px;}
+  .scan-cell .v{font-size:13.5px;font-weight:600;color:var(--text);line-height:1.35;}
+  .scan-cell .v.go{color:var(--success);}
+  .open-to{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:16px;align-items:center;}
+  .open-to .lbl{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);margin-right:4px;}
+  .role-chip{font-family:var(--mono);font-size:11px;color:var(--text-soft);background:var(--surface);border:1px solid var(--line);padding:5px 11px;border-radius:20px;}
+
+  .numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .num{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:20px 18px;box-shadow:var(--shadow-sm);}
+  .num .n{font-family:var(--display);font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1;color:var(--text);}
+  .num .n small{font-size:15px;color:var(--text-faint);font-weight:500;}
+  .num .l{font-size:12.5px;color:var(--text-soft);margin-top:8px;line-height:1.5;}
+  .num.wip .n{color:var(--running);}
+
+  /* ---------- what I bring ---------- */
+  .about-panel{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:26px 30px;box-shadow:var(--shadow-sm);}
+  .about-text{font-size:15px;color:var(--text-soft);line-height:1.78;max-width:72ch;}
   .about-text strong{color:var(--text);font-weight:600;}
-  .about-text + .about-text{margin-top:14px;}
+  .about-text + .about-text{margin-top:13px;}
+  .lanes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;}
+  .lane{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:22px 22px 20px;box-shadow:var(--shadow-sm);
+    border-top:3px solid var(--lane);transition:transform .3s var(--ease),box-shadow .3s var(--ease);}
+  .lane:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+  .lane.biz{--lane:var(--queued);} .lane.data{--lane:var(--running);} .lane.ai{--lane:var(--violet);}
+  .lane .lane-k{font-family:var(--mono);font-size:10px;letter-spacing:.07em;color:var(--lane);margin-bottom:8px;}
+  .lane h3{font-family:var(--display);font-size:17px;font-weight:600;margin-bottom:8px;letter-spacing:-.01em;}
+  .lane p{font-size:13px;color:var(--text-soft);line-height:1.6;margin-bottom:12px;}
+  .lane ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
+  .lane li{font-size:12.5px;color:var(--text-soft);padding-left:16px;position:relative;line-height:1.5;}
+  .lane li::before{content:'';position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--lane);opacity:.7;}
 
-  .focus-grid{margin-top:20px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-    background:var(--line-soft);border:1px solid var(--line-soft);border-radius:11px;overflow:hidden;}
-  .focus-item{background:var(--surface);padding:22px 20px;transition:background .3s var(--ease);}
-  .focus-item:hover{background:var(--surface-2);}
-  .focus-item h4{font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--running);margin-bottom:10px;}
-  .focus-item p{font-size:12.5px;color:var(--text-soft);line-height:1.6;}
-  @media(max-width:780px){.focus-grid{grid-template-columns:1fr 1fr;}}
-  @media(max-width:480px){.focus-grid{grid-template-columns:1fr;}}
-
-  /* ---- projects ---- */
-  .project{padding:24px 26px;margin-bottom:16px;background:var(--surface);border:1px solid var(--line);border-radius:11px;
+  /* ---------- projects ---------- */
+  .project{padding:24px 26px;margin-bottom:16px;background:var(--surface);border:1px solid var(--line);border-radius:11px;box-shadow:var(--shadow-sm);
     transition:border-color .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease);}
   .project:hover{border-color:#C6CDD9;transform:translateY(-3px);box-shadow:var(--shadow-lg);}
-
-  .project.flagship{border-color:var(--running-line);padding:32px 30px;margin-bottom:30px;
+  .project.flagship{border-color:var(--running-line);padding:32px 30px;margin-bottom:28px;box-shadow:var(--shadow-md);
     background:linear-gradient(180deg,rgba(37,99,201,.07),var(--surface) 160px);}
   .project.flagship:hover{border-color:#8FB2EA;}
   .project.flagship .project-title{font-size:clamp(19px,2.2vw,23px);line-height:1.28;}
-  .flagship-badge{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--running);
-    border:1px solid var(--running-line);background:var(--surface);padding:4px 10px;border-radius:20px;
-    display:inline-flex;align-items:center;gap:7px;margin-bottom:16px;}
+  .flagship-badge{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--running);border:1px solid var(--running-line);background:var(--surface);
+    padding:4px 10px;border-radius:20px;display:inline-flex;align-items:center;gap:7px;margin-bottom:14px;}
   .flagship-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--running);animation:blip 1.8s ease-in-out infinite;}
-
-  .project-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;margin-bottom:18px;flex-wrap:wrap;}
+  .project-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;margin-bottom:8px;flex-wrap:wrap;}
   .project-title{font-family:var(--display);font-size:17.5px;font-weight:600;letter-spacing:-.01em;}
-  .project-link{font-family:var(--mono);font-size:11px;color:var(--running);text-decoration:none;white-space:nowrap;
-    border-bottom:1px solid transparent;transition:border-color .25s var(--ease);}
+  .project-why{font-size:13.5px;color:var(--text-soft);margin-bottom:16px;line-height:1.6;}
+  .project-why strong{color:var(--text);font-weight:600;}
+  .project-link{font-family:var(--mono);font-size:11px;color:var(--running);text-decoration:none;white-space:nowrap;border-bottom:1px solid transparent;}
   .project-link:hover{border-color:var(--running);}
   .project-link.muted{color:var(--text-faint);}
 
   .flow{display:flex;align-items:stretch;flex-wrap:wrap;}
-  .flow-step{flex:1 1 150px;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:12px 14px;}
-  .flow-step .flow-label{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--text-faint);margin-bottom:6px;}
+  .flow-step{flex:1 1 150px;background:#F5F7FA;border:1px solid var(--line);border-radius:8px;padding:12px 14px;}
+  .flow-step .flow-label{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--text-faint);margin-bottom:6px;text-transform:uppercase;}
   .flow-step p{font-size:12.5px;color:var(--text-soft);line-height:1.55;}
-  @media(max-width:660px){
-    .flow{flex-direction:column;}
-    .flow .dag-arrow{width:2px;height:18px;margin:3px auto;}
-    .flow .dag-arrow::after{right:auto;left:50%;top:auto;bottom:-1px;transform:translateX(-50%);
-      border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid var(--line);border-bottom:none;}
-  }
+  .dag-arrow{position:relative;width:24px;height:2px;background:var(--line);flex-shrink:0;margin:0 2px;align-self:center;}
+  .dag-arrow::after{content:'';position:absolute;right:-1px;top:50%;transform:translateY(-50%);border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid var(--line);}
 
   .metrics-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px;}
-  .metric{font-family:var(--mono);font-size:11px;color:var(--success);background:var(--success-soft);
-    padding:5px 11px;border-radius:20px;border:1px solid var(--success-line);}
+  .metric{font-family:var(--mono);font-size:11px;color:var(--success);background:var(--success-soft);padding:5px 11px;border-radius:20px;border:1px solid var(--success-line);}
   .metric.blue{color:var(--running);background:var(--running-soft);border-color:var(--running-line);}
   .stack-line{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);margin-top:14px;line-height:1.6;}
 
-  .archive{margin-top:34px;}
+  .archive{margin-top:30px;}
   .archive-label{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);margin-bottom:4px;}
-  .archive-row{display:flex;justify-content:space-between;gap:18px;padding:13px 0;
-    border-top:1px solid var(--line-soft);font-size:13px;flex-wrap:wrap;}
+  .archive-row{display:flex;justify-content:space-between;gap:18px;padding:13px 0;border-top:1px solid var(--line-soft);font-size:13px;flex-wrap:wrap;}
   .archive-name{color:var(--text-soft);}
   .archive-stack{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);}
 
-  /* ---- skills ---- */
-  #skills{background:var(--surface);}
-  .skills-cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
-  .skill-cat{margin-bottom:28px;}
-  .skill-cat:last-child{margin-bottom:0;}
-  .skill-cat h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--text-faint);
-    margin-bottom:12px;display:flex;align-items:center;gap:8px;}
-  .skill-cat h4::before{content:'';width:14px;height:1px;background:var(--line);}
-  .skill-list{display:flex;flex-wrap:wrap;gap:8px;}
-  .skill-chip{font-family:var(--mono);font-size:12px;color:var(--text-soft);background:var(--bg);
-    border:1px solid var(--line);padding:7px 12px;border-radius:7px;
-    transition:border-color .25s var(--ease),color .25s var(--ease),transform .25s var(--ease);}
-  .skill-chip:hover{border-color:var(--running);color:var(--running);transform:translateY(-2px);}
-  .skill-chip.learning{border-style:dashed;border-color:var(--queued-line);color:var(--queued);background:var(--queued-soft);}
-  .skill-chip.learning:hover{border-color:var(--queued);color:var(--queued);}
-  .learning-note{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);margin-top:13px;}
-
-  .certs{margin-top:46px;background:var(--bg);border:1px solid var(--line);border-radius:11px;padding:4px 22px;}
-  .cert-row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:15px 0;
-    border-top:1px solid var(--line-soft);font-size:13px;flex-wrap:wrap;}
-  .cert-row:first-child{border-top:none;}
-  .cert-name{color:var(--text);font-weight:500;display:flex;align-items:center;gap:11px;}
-  .cert-name .dot{width:6px;height:6px;border-radius:50%;background:var(--queued);flex-shrink:0;}
-  .cert-issuer{font-family:var(--mono);font-size:11px;color:var(--text-faint);white-space:nowrap;}
-
-  /* ---- experience / education track ---- */
+  /* ---------- experience / education ---------- */
+  #experience,#skills{background:var(--band);}
   .track{position:relative;padding-left:34px;}
   .track::before{content:'';position:absolute;left:8px;top:10px;bottom:10px;width:1.5px;background:var(--line);}
-  /* The spine fills in when the section arrives — the run advancing. It's the
-     one scroll-linked effect on the page and it carries the metaphor rather
-     than decorating it. */
-  .track::after{content:'';position:absolute;left:8px;top:10px;width:1.5px;height:0;
-    background:linear-gradient(180deg,var(--success),var(--running));transition:height 1.2s var(--ease);}
+  .track::after{content:'';position:absolute;left:8px;top:10px;width:1.5px;height:0;background:linear-gradient(180deg,var(--success),var(--running));transition:height 1.2s var(--ease);}
   .track.lit::after{height:calc(100% - 20px);}
-
-  .track-node{position:relative;margin-bottom:24px;}
+  .track-node{position:relative;margin-bottom:22px;}
   .track-node:last-child{margin-bottom:0;}
-  .track-dot{position:absolute;left:-34px;top:7px;width:15px;height:15px;border-radius:50%;
-    background:var(--bg);border:2px solid var(--success);}
+  .track-dot{position:absolute;left:-34px;top:7px;width:15px;height:15px;border-radius:50%;background:var(--bg);border:2px solid var(--success);}
   .track-dot.running{border-color:var(--running);animation:blip 1.8s ease-in-out infinite;}
   .track-dot::after{content:'';position:absolute;inset:3px;border-radius:50%;background:var(--success);}
   .track-dot.running::after{background:var(--running);}
-
-  .role,.edu-node{background:var(--surface);border:1px solid var(--line);border-radius:11px;
-    transition:border-color .3s var(--ease),transform .3s var(--ease);}
-  .role{padding:24px 26px;}
+  .role,.edu-node{background:var(--surface);border:1px solid var(--line);border-radius:11px;box-shadow:var(--shadow-sm);transition:border-color .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease);}
+  .role{padding:22px 26px;}
   .role:hover,.edu-node:hover{border-color:#C6CDD9;transform:translateX(3px);box-shadow:var(--shadow-md);}
-  .role-top{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:5px;}
+  .role-top{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:4px;}
   .role-title{font-family:var(--display);font-size:17px;font-weight:600;}
   .role-period{font-family:var(--mono);font-size:11px;color:var(--text-faint);white-space:nowrap;padding-top:5px;}
-  .role-company{font-family:var(--mono);font-size:11.5px;color:var(--running);margin-bottom:14px;}
+  .role-company{font-family:var(--mono);font-size:11.5px;color:var(--running);margin-bottom:12px;}
+  .role-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+  .role-tag{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:12px;border:1px solid var(--line);color:var(--text-soft);background:var(--surface-2);}
+  .role-tag.biz{color:var(--queued);border-color:var(--queued-line);background:var(--queued-soft);}
+  .role-tag.data{color:var(--running);border-color:var(--running-line);background:var(--running-soft);}
+  .role-tag.ai{color:var(--violet);border-color:var(--violet-line);background:var(--violet-soft);}
   .role-bullets{list-style:none;display:flex;flex-direction:column;gap:8px;}
   .role-bullets li{font-size:13.5px;color:var(--text-soft);line-height:1.62;padding-left:16px;position:relative;}
   .role-bullets li::before{content:'—';position:absolute;left:0;color:var(--text-faint);}
   .role-bullets li strong{color:var(--text);font-weight:600;}
-
-  #experience{background:var(--surface);}
-  #experience .role{background:var(--bg);}
-
   .edu-node{padding:16px 20px;}
   .edu-period{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);margin-bottom:4px;}
   .edu-school{font-weight:600;font-size:14.5px;margin-bottom:3px;}
   .edu-degree{font-size:13px;color:var(--text-soft);}
   .edu-note{font-family:var(--mono);font-size:10.5px;color:var(--running);margin-top:6px;}
-  .edu-research{font-size:13px;color:var(--text-soft);margin-top:11px;padding-top:11px;
-    border-top:1px solid var(--line-soft);line-height:1.65;}
+  .edu-research{font-size:13px;color:var(--text-soft);margin-top:11px;padding-top:11px;border-top:1px solid var(--line-soft);line-height:1.65;}
 
-  /* ---- contact ---- */
+  /* ---------- skills ---------- */
+  .skills-cols{display:grid;grid-template-columns:1fr 1fr;gap:36px;}
+  .skill-cat{margin-bottom:26px;}
+  .skill-cat:last-child{margin-bottom:0;}
+  .skill-cat h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--text-faint);margin-bottom:11px;display:flex;align-items:center;gap:8px;}
+  .skill-cat h4::before{content:'';width:14px;height:1px;background:var(--line);}
+  .skill-list{display:flex;flex-wrap:wrap;gap:7px;}
+  .skill-chip{font-family:var(--mono);font-size:12px;color:var(--text-soft);background:var(--surface);border:1px solid var(--line);padding:6px 11px;border-radius:7px;
+    transition:border-color .25s var(--ease),color .25s var(--ease),transform .25s var(--ease);}
+  .skill-chip:hover{border-color:var(--running);color:var(--running);transform:translateY(-2px);}
+  .skill-chip.learning{border-style:dashed;border-color:var(--queued-line);color:var(--queued);background:var(--queued-soft);}
+  .learning-note{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);margin-top:12px;}
+  .certs{margin-top:40px;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:4px 22px;box-shadow:var(--shadow-sm);}
+  .cert-row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 0;border-top:1px solid var(--line-soft);font-size:13px;flex-wrap:wrap;}
+  .cert-row:first-child{border-top:none;}
+  .cert-name{color:var(--text);font-weight:500;display:flex;align-items:center;gap:11px;}
+  .cert-name .dot{width:6px;height:6px;border-radius:50%;background:var(--success);flex-shrink:0;}
+  .cert-issuer{font-family:var(--mono);font-size:11px;color:var(--text-faint);white-space:nowrap;}
+
+  /* ---------- contact ---------- */
   #contact{padding-bottom:64px;}
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start;}
-  .contact-list{margin-top:26px;}
+  .contact-list{margin-top:24px;}
   .contact-row{display:flex;gap:16px;padding:12px 0;border-top:1px solid var(--line-soft);font-size:13.5px;}
   .contact-row:last-child{border-bottom:1px solid var(--line-soft);}
   .contact-label{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);width:64px;flex-shrink:0;padding-top:2px;}
   .contact-row a{color:var(--running);text-decoration:none;}
   .contact-row a:hover{text-decoration:underline;}
-  .social-row{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap;}
-  .social-btn{font-family:var(--mono);font-size:11.5px;border:1px solid var(--line);padding:9px 16px;
-    border-radius:24px;text-decoration:none;color:var(--text);
+  .social-row{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;}
+  .social-btn{font-family:var(--mono);font-size:11.5px;border:1px solid var(--line);padding:9px 16px;border-radius:24px;text-decoration:none;color:var(--text);background:var(--surface);
     transition:border-color .25s var(--ease),color .25s var(--ease),transform .25s var(--ease);}
   .social-btn:hover{border-color:var(--running);color:var(--running);transform:translateY(-2px);}
-
-  .contact-card{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:26px;}
+  .contact-card{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:26px;box-shadow:var(--shadow-sm);}
   .form-field{display:flex;flex-direction:column;gap:7px;margin-bottom:15px;}
   .form-label{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--text-faint);}
-  .form-input,.form-textarea{background:var(--bg);border:1px solid var(--line);color:var(--text);
-    padding:11px 13px;border-radius:8px;font-family:var(--sans);font-size:13.5px;width:100%;outline:none;
+  .form-input,.form-textarea{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:11px 13px;border-radius:8px;font-family:var(--sans);font-size:13.5px;width:100%;outline:none;
     transition:border-color .25s var(--ease),box-shadow .25s var(--ease);}
   .form-input:focus,.form-textarea:focus{border-color:var(--running);box-shadow:0 0 0 3px rgba(37,99,201,.14);}
   .form-textarea{resize:vertical;min-height:92px;}
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:15px;}
-  .btn-send{background:var(--text);color:#fff;font-family:var(--mono);font-size:12px;padding:12px 21px;
-    border-radius:24px;border:none;cursor:pointer;transition:background .25s var(--ease),color .25s var(--ease);}
-  .btn-send:hover{background:var(--running);color:#fff;}
+  .btn-send{background:var(--text);color:#fff;font-family:var(--mono);font-size:12px;padding:12px 21px;border-radius:24px;border:none;cursor:pointer;transition:background .25s var(--ease);}
+  .btn-send:hover{background:var(--running);}
   .btn-send:disabled{opacity:.55;cursor:not-allowed;}
   .form-status{font-family:var(--mono);font-size:11.5px;margin-top:13px;line-height:1.55;min-height:18px;}
   .form-status.ok{color:var(--success);}
@@ -403,92 +356,52 @@
   .hp{position:absolute;left:-9999px;opacity:0;height:0;width:0;}
 
   footer{padding:26px 0;border-top:1px solid var(--line-soft);}
-  .footer-inner{max-width:var(--measure);margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;
-    gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;color:var(--text-faint);}
+  .footer-inner{max-width:var(--measure);margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;color:var(--text-faint);}
 
-  /* ---- back to top ---- */
-  .to-top{position:fixed;right:22px;bottom:22px;z-index:70;width:42px;height:42px;border-radius:50%;
-    background:var(--surface-2);border:1px solid var(--line);color:var(--text-soft);
-    display:grid;place-items:center;cursor:pointer;font-size:15px;
-    opacity:0;visibility:hidden;transform:translateY(10px);
-    transition:opacity .35s var(--ease),transform .35s var(--ease),visibility .35s,
-               border-color .25s var(--ease),color .25s var(--ease);}
+  .to-top{position:fixed;right:22px;bottom:22px;z-index:70;width:42px;height:42px;border-radius:50%;background:var(--surface);border:1px solid var(--line);color:var(--text-soft);
+    display:grid;place-items:center;cursor:pointer;font-size:15px;box-shadow:var(--shadow-md);opacity:0;visibility:hidden;transform:translateY(10px);
+    transition:opacity .35s var(--ease),transform .35s var(--ease),visibility .35s,border-color .25s var(--ease),color .25s var(--ease);}
   .to-top.show{opacity:1;visibility:visible;transform:none;}
   .to-top:hover{border-color:var(--running);color:var(--running);}
 
-  /* ========================================================================
-     REVEAL ON SCROLL
-     Short travel (14px), one shared curve, firing slightly before the element
-     reaches the viewport edge so content has already settled by the time it's
-     readable. Children stagger 60ms — enough to feel sequenced, not enough to
-     make anyone wait for their own page.
-     ======================================================================== */
-  .reveal{opacity:0;transform:translateY(14px);
-    transition:opacity .6s var(--ease),transform .6s var(--ease);}
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
   .reveal.in{opacity:1;transform:none;}
-  .reveal.d1{transition-delay:.06s;}
-  .reveal.d2{transition-delay:.12s;}
-  .reveal.d3{transition-delay:.18s;}
-  .reveal.d4{transition-delay:.24s;}
+  .reveal.d1{transition-delay:.06s;} .reveal.d2{transition-delay:.12s;} .reveal.d3{transition-delay:.18s;} .reveal.d4{transition-delay:.24s;}
 
+  @media(max-width:880px){
+    .lanes{grid-template-columns:1fr;}
+    .numbers{grid-template-columns:1fr 1fr;}
+  }
   @media(max-width:780px){
-    .nav-links{display:none;}
-    .menu-btn{display:block;}
-    .mobile-menu{display:block;}
-    .nav-cta{display:none;}
+    .nav-links{display:none;} .menu-btn{display:block;} .mobile-menu{display:block;} .nav-cta{display:none;}
     .skills-cols,.contact-grid,.form-row{grid-template-columns:1fr;}
     section{padding:64px 0;}
+    .lineage-foot{grid-template-columns:1fr;}
+    .node-detail{border-right:none;border-bottom:1px solid var(--line-soft);min-height:0;}
+    .run-log{min-height:0;}
+  }
+  @media(max-width:680px){
+    .scan-strip{grid-template-columns:1fr 1fr;}
+    .wrap,.wrap-wide,.nav-inner,.statusbar-inner,.footer-inner{padding-left:16px;padding-right:16px;}
+    .flow{flex-direction:column;}
+    .flow .dag-arrow{width:2px;height:16px;margin:3px auto;}
+    .flow .dag-arrow::after{right:auto;left:50%;top:auto;bottom:-1px;transform:translateX(-50%);border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid var(--line);border-bottom:none;}
+    .about-panel,.project,.role{padding:20px;}
+    .project.flagship{padding:24px 20px;}
   }
 
-  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
-    outline:2px solid var(--running);outline-offset:3px;border-radius:4px;}
+  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--running);outline-offset:3px;border-radius:4px;}
 
-
-  /* ========================================================================
-     LIGHT-THEME ELEVATION
-     On a dark page, a 1px border is enough to separate a card from the
-     background. On white it isn't — everything flattens into one sheet.
-     These shadows do the separating; the borders stay as a fallback for
-     high-contrast modes and printing.
-     ======================================================================== */
-  .about-panel,.focus-grid,.scan-strip,.certs,.contact-card,
-  .project,.role,.edu-node,.dag-node{box-shadow:var(--shadow-sm);}
-  .project.flagship{box-shadow:var(--shadow-md);}
-  .to-top{box-shadow:var(--shadow-md);background:var(--surface);}
-
-  /* Alternating sections need a value shift, not just a border. The dark
-     build used a lighter surface for #skills and #experience; inverted, the
-     tinted band is the darker one, so those sections take the page tone and
-     the cards stay pure white. */
-  #skills,#experience{background:#EEF1F6;}
-  #skills .certs,#experience .role{background:var(--surface);}
-  #skills .skill-chip{background:var(--surface);}
-  #skills .skill-chip.learning{background:var(--queued-soft);}
-
-  /* Hairlines read heavier on white than on black, so the grid gaps in the
-     two grid components get lightened to keep them from looking ruled. */
-  .focus-grid,.scan-strip{background:var(--line);}
-  .focus-item,.scan-cell{background:var(--surface);}
-
-  /* The page texture is subtle enough on white that it disappears behind
-     white cards — keep it, but drop it slightly so large white areas don't
-     look like a mistake next to the dotted background. */
-  .flow-step{background:#F5F7FA;}
-
-  /* Print: recruiters do still print these. Strip chrome, keep content. */
   @media print{
-    .progress-track,header,.to-top,.statusbar,.hero-actions,.contact-card{display:none;}
+    .progress-track,header,.to-top,.statusbar,.hero-actions,.contact-card,.lineage{display:none;}
     body{background:#fff;}
     section{padding:24px 0;break-inside:avoid;}
-    .project,.role,.edu-node,.about-panel{box-shadow:none;border:1px solid #ccc;}
+    .project,.role,.edu-node,.about-panel,.lane,.num{box-shadow:none;border:1px solid #ccc;}
     a{text-decoration:none;color:#000;}
   }
-
-  /* Reduced motion: the page degrades to static and fully legible. */
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto;}
-    *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
-      transition-duration:.001ms!important;transition-delay:0ms!important;}
+    *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0ms!important;}
     .reveal{opacity:1;transform:none;}
     .track::after{display:none;}
   }
@@ -500,7 +413,7 @@
 
 <div class="statusbar">
   <div class="statusbar-inner">
-    <span><span class="live-dot"></span>available now — analytics engineer roles</span>
+    <span><span class="live-dot"></span>available now — analytics engineering · data · AI roles</span>
     <span class="sep">·</span>
     <span>nyc metro · open to remote</span>
   </div>
@@ -512,8 +425,8 @@
     <ul class="nav-links" id="desktop-nav">
       <li><a href="#about">about</a></li>
       <li><a href="#projects">projects</a></li>
-      <li><a href="#skills">skills</a></li>
       <li><a href="#experience">experience</a></li>
+      <li><a href="#skills">skills</a></li>
       <li><a href="#education">education</a></li>
     </ul>
     <div class="nav-right">
@@ -527,74 +440,41 @@
     <ul>
       <li><a href="#about">about</a></li>
       <li><a href="#projects">projects</a></li>
-      <li><a href="#skills">skills</a></li>
       <li><a href="#experience">experience</a></li>
+      <li><a href="#skills">skills</a></li>
       <li><a href="#education">education</a></li>
       <li><a href="#contact">contact</a></li>
     </ul>
   </nav>
 </header>
 
-<!-- HERO -->
+<!-- ============================== HERO ============================== -->
 <section id="hero">
-  <div class="wrap" style="text-align:center;">
+  <div class="wrap hero-head">
     <div class="run-header reveal">
       <span class="tag">role: analytics_engineer</span>
-      <span class="tag">location: nyc metro</span>
+      <span class="tag">location: nyc_metro</span>
       <span class="tag">exp: 5+ yrs</span>
     </div>
-
     <h1 class="hero-name reveal d1">Dhruvil Panchal</h1>
-    <div class="hero-role reveal d2">Semantic layers · governed pipelines · measured AI output</div>
+    <div class="hero-role reveal d2">Business questions → governed data → AI answers you can trust</div>
     <p class="hero-tagline reveal d3">
-      I build the semantic and governance layer that makes enterprise data safe for AI to query — and I measure whether the answers coming back are actually right.
+      I sit where <strong>business</strong>, <strong>data engineering</strong> and <strong>AI</strong> meet. I turn messy questions into clear metric definitions, build the tested pipelines behind them, and measure whether the AI answers on top are actually right.
     </p>
 
     <div class="scan-strip reveal d4">
       <div class="scan-cell"><div class="k">focus</div><div class="v">Analytics engineering</div></div>
-      <div class="scan-cell"><div class="k">core stack</div><div class="v">Snowflake · dbt · Airflow</div></div>
-      <div class="scan-cell"><div class="k">based</div><div class="v">NYC metro</div></div>
+      <div class="scan-cell"><div class="k">core stack</div><div class="v">Snowflake · dbt · Airflow · Python</div></div>
+      <div class="scan-cell"><div class="k">based</div><div class="v">NYC metro · remote OK</div></div>
       <div class="scan-cell"><div class="k">status</div><div class="v go">Available now</div></div>
     </div>
 
-    <div class="dag-wrap reveal d4">
-      <div class="dag-label">career.dag()</div>
-
-      <div class="dag-foundations">
-        <div class="dag-node success">
-          <div class="node-status"><span class="dot"></span>done</div>
-          <div class="node-title">M.S. Information Science, Cleveland State</div>
-          <div class="node-date">2021 — 2023</div>
-        </div>
-      </div>
-
-      <div class="merge-svg"></div>
-
-      <div class="dag-trunk">
-        <div class="dag-node success">
-          <div class="node-status"><span class="dot"></span>done</div>
-          <div class="node-title">Data Science Intern</div>
-          <div class="node-date">2022 · ITHENA</div>
-        </div>
-        <div class="dag-arrow"><span class="flow-dot" style="animation-delay:0s"></span></div>
-        <div class="dag-node success">
-          <div class="node-status"><span class="dot"></span>done</div>
-          <div class="node-title">Data Analyst → Sr. Data Analyst</div>
-          <div class="node-date">2024 — 2026 · Printpack</div>
-        </div>
-        <div class="dag-arrow"><span class="flow-dot" style="animation-delay:.6s"></span></div>
-        <div class="dag-node running">
-          <div class="node-status"><span class="dot"></span>running</div>
-          <div class="node-title">Governed semantic layer + agent eval harness</div>
-          <div class="node-date">building now · DBA research</div>
-        </div>
-        <div class="dag-arrow"><span class="flow-dot" style="animation-delay:1.2s"></span></div>
-        <div class="dag-node queued">
-          <div class="node-status"><span class="dot"></span>queued</div>
-          <div class="node-title">Next: Analytics Engineer role</div>
-          <div class="node-date">open now</div>
-        </div>
-      </div>
+    <div class="open-to reveal d4">
+      <span class="lbl">open to →</span>
+      <span class="role-chip">Analytics Engineer</span>
+      <span class="role-chip">Data Engineer</span>
+      <span class="role-chip">BI / Business Systems Analyst</span>
+      <span class="role-chip">AI Data Analyst</span>
     </div>
 
     <div class="hero-actions reveal d4">
@@ -604,227 +484,194 @@
       <a href="#contact" class="btn btn-outline">Get in touch</a>
     </div>
   </div>
+
+  <!-- LIVE LINEAGE. Rendered by script below; it lays itself out horizontally
+       on wide screens and vertically on phones. Click a node to trace it. -->
+  <div class="wrap-wide">
+    <div class="lineage reveal d4" id="lineage" aria-label="Interactive data lineage graph">
+      <div class="lineage-bar">
+        <div class="left">
+          <div class="win-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          <span class="lineage-title">lineage.live — how I build</span>
+        </div>
+        <span class="run-pill" id="run-pill" role="status" aria-live="polite"><span class="pd"></span><span id="run-pill-text">starting…</span></span>
+      </div>
+      <div class="lineage-canvas" id="lineage-canvas">
+        <svg id="lineage-svg" role="img" aria-label="Pipeline from sources through staging, marts and a governed semantic layer to dashboards, an AI agent and an evaluation harness"></svg>
+      </div>
+      <div class="lineage-foot">
+        <div class="node-detail" id="node-detail" aria-live="polite"></div>
+        <div class="run-log" id="run-log" aria-hidden="true"><div class="head">$ tail -f run.log</div></div>
+      </div>
+    </div>
+    <p class="lineage-note">Illustrative pipeline modelled on my project work · tap any node to trace its lineage</p>
+  </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ============================== NUMBERS ============================== -->
+<section id="numbers" style="padding:56px 0;">
+  <div class="wrap">
+    <div class="numbers">
+      <div class="num reveal"><div class="n">15<small>+</small></div><div class="l">dbt models shipped with CI tests on every pull request</div></div>
+      <div class="num reveal d1"><div class="n">10,412</div><div class="l">complaint records classified with NLP + LLM-assisted labelling</div></div>
+      <div class="num reveal d2"><div class="n">85<small>%</small></div><div class="l">classifier accuracy on a held-out test set</div></div>
+      <div class="num wip reveal d3"><div class="n">100<small>+</small></div><div class="l">known-answer questions in my AI eval harness (in progress)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== ABOUT ============================== -->
 <section id="about">
   <div class="wrap">
     <div class="eyebrow reveal"><span class="stage-id">01</span> · about</div>
+    <h2 class="section-title reveal d1">One person who speaks business, builds the data, and checks the AI.</h2>
     <div class="about-panel reveal d1">
-      <p class="about-text">Five years building the layer between raw warehouse tables and the people — and now the systems — asking questions of them. <strong>Snowflake, dbt, Airflow, SQL, Python</strong>, with CI-tested models and version-controlled releases.</p>
-      <p class="about-text">The interesting problem right now isn't generating an answer. It's whether the answer is <strong>correct, permitted, and traceable</strong>. That means metrics defined once instead of five ways, access enforced at the boundary rather than trusted, and an evaluation set that tells you what percentage of questions the system actually gets right.</p>
-      <p class="about-text">I came to this from the BI side, which is where you learn that "revenue" means four different things depending on who's asking. That ambiguity is exactly what breaks AI answers on enterprise data, and tooling doesn't solve it on its own.</p>
+      <p class="about-text">I build the layer between raw warehouse tables and the people (and now the systems) asking questions of them: <strong>Snowflake, dbt, Airflow, SQL and Python</strong>, with CI-tested models and version-controlled releases.</p>
+      <p class="about-text">I came to this from the BI side, where you learn that "revenue" means four different things depending on who's asking. That ambiguity is a business problem before it's a technical one, and it's exactly what breaks AI answers on enterprise data. So I start with the decision someone needs to make, agree the definitions, and only then build.</p>
+      <p class="about-text">Today's interesting question isn't whether AI can generate an answer. It's whether the answer is <strong>correct, permitted and traceable</strong>.</p>
     </div>
 
-    <div class="focus-grid reveal d2">
-      <div class="focus-item">
-        <h4>Semantic &amp; metrics layer</h4>
-        <p>Metric definitions that live in version control, not in eleven dashboards that quietly disagree.</p>
+    <div class="lanes">
+      <div class="lane biz reveal d1">
+        <div class="lane-k">01 · BUSINESS</div>
+        <h3>Start from the decision</h3>
+        <p>Translate stakeholder questions into requirements, KPIs and one agreed definition per metric.</p>
+        <ul>
+          <li>Requirements gathering (IIBA ECBA)</li>
+          <li>KPI &amp; metric definition with sales, ops, product</li>
+          <li>A/B test design and readouts</li>
+        </ul>
       </div>
-      <div class="focus-item">
-        <h4>Analytics engineering</h4>
-        <p>Modular ETL/ELT with dbt, Snowflake, and Airflow — tested, versioned, trusted downstream.</p>
+      <div class="lane data reveal d2">
+        <div class="lane-k">02 · DATA ENGINEERING</div>
+        <h3>Build it so it can be trusted</h3>
+        <p>Modular, tested pipelines that downstream teams don't have to second-guess.</p>
+        <ul>
+          <li>dbt + Snowflake + Airflow ELT</li>
+          <li>Streaming with Kafka &amp; Spark</li>
+          <li>CI/CD via GitHub Actions &amp; Docker</li>
+        </ul>
       </div>
-      <div class="focus-item">
-        <h4>Evaluation &amp; accuracy</h4>
-        <p>Known-answer test sets, execution accuracy on generated SQL, and a written taxonomy of failures.</p>
-      </div>
-      <div class="focus-item">
-        <h4>Governance &amp; access</h4>
-        <p>Row and column policies, masking, and audit logs that answer who asked what and what it touched.</p>
+      <div class="lane ai reveal d3">
+        <div class="lane-k">03 · AI &amp; GOVERNANCE</div>
+        <h3>Measure what the AI gets right</h3>
+        <p>Put LLMs to work on governed data, and keep score on accuracy and access.</p>
+        <ul>
+          <li>LLM summaries inside BI dashboards</li>
+          <li>NLP classification, LLM-assisted labelling</li>
+          <li>Agent access via MCP + eval harnesses</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- ============================== PROJECTS ============================== -->
 <section id="projects">
   <div class="wrap">
     <div class="eyebrow reveal"><span class="stage-id">02</span> · projects</div>
     <h2 class="section-title reveal d1">One thing built deep, and the work that made it possible.</h2>
-    <p class="section-sub reveal d1">Six projects at equal weight read as coursework — nobody clicks all six, so everything averages down to the weakest one. One flagship, two that support it, the rest listed honestly below.</p>
+    <p class="section-sub reveal d1">Each project reads left to right: the problem, what I built, and what came out of it.</p>
 
-    <div class="projects-body">
-      <!-- FLAGSHIP. Keep the in-progress badge until the eval numbers are real. -->
-      <div class="project flagship reveal">
-        <span class="flagship-badge"><span class="dot"></span>in progress · building now</span>
-        <div class="project-head">
-          <div class="project-title">Can an AI agent be trusted with a governed warehouse?</div>
-          <a href="https://github.com/DhruvilPanchal205" class="project-link muted">repo soon →</a>
-        </div>
-        <div class="flow">
-          <div class="flow-step"><div class="flow-label">Problem</div><p>Natural-language querying is everywhere. Nobody publishes how often it's wrong, or in what way.</p></div>
-          <div class="dag-arrow"></div>
-          <div class="flow-step"><div class="flow-label">Approach</div><p>dbt semantic layer over Snowflake, exposed through an MCP server with row-level access enforced at the boundary and every query audit-logged.</p></div>
-          <div class="dag-arrow"></div>
-          <div class="flow-step"><div class="flow-label">Measurement</div><p>Eval set of business questions with known-correct answers, scored on execution accuracy, plus a written taxonomy of how it fails.</p></div>
-        </div>
-        <div class="metrics-row">
-          <!-- TODO: swap for measured values once the eval set runs. -->
-          <span class="metric blue">eval set: 100+ questions</span>
-          <span class="metric blue">scored on execution accuracy</span>
-          <span class="metric blue">failure taxonomy published</span>
-        </div>
-        <div class="stack-line">dbt metricflow · snowflake · mcp · python · rbac &amp; masking · audit logging</div>
+    <!-- FLAGSHIP. Keep the in-progress badge until the eval numbers are real. -->
+    <div class="project flagship reveal">
+      <span class="flagship-badge"><span class="dot"></span>flagship · building now</span>
+      <div class="project-head">
+        <div class="project-title">Can an AI agent be trusted with a governed warehouse?</div>
+        <a href="https://github.com/DhruvilPanchal205" class="project-link muted">repo soon →</a>
       </div>
+      <p class="project-why"><strong>Why it matters to a business:</strong> natural-language querying is being rolled out everywhere, and almost nobody publishes how often it's wrong.</p>
+      <div class="flow">
+        <div class="flow-step"><div class="flow-label">Problem</div><p>No published error rates or failure modes for AI answers on enterprise data.</p></div>
+        <div class="dag-arrow"></div>
+        <div class="flow-step"><div class="flow-label">Approach</div><p>dbt semantic layer over Snowflake, exposed through an MCP server with row-level access enforced at the boundary and every query audit-logged.</p></div>
+        <div class="dag-arrow"></div>
+        <div class="flow-step"><div class="flow-label">Measurement</div><p>Business questions with known-correct answers, scored on execution accuracy, plus a written taxonomy of how it fails.</p></div>
+      </div>
+      <div class="metrics-row">
+        <!-- TODO: swap for measured values once the eval set runs. -->
+        <span class="metric blue">eval set: 100+ questions</span>
+        <span class="metric blue">scored on execution accuracy</span>
+        <span class="metric blue">failure taxonomy published</span>
+      </div>
+      <div class="stack-line">dbt metricflow · snowflake · mcp · python · rbac &amp; masking · audit logging</div>
+    </div>
 
-      <div class="project reveal">
-        <div class="project-head">
-          <div class="project-title">Modern ELT pipeline with dbt</div>
-          <a href="https://github.com/DhruvilPanchal205/ELT-PIPELINE_DBT" class="project-link">repo →</a>
-        </div>
-        <div class="flow">
-          <div class="flow-step"><div class="flow-label">Problem</div><p>Downstream models are only as trustworthy as the layer feeding them</p></div>
-          <div class="dag-arrow"></div>
-          <div class="flow-step"><div class="flow-label">Approach</div><p>dbt Core on Snowflake, orchestrated with Airflow, tests running in CI on every pull request</p></div>
-          <div class="dag-arrow"></div>
-          <div class="flow-step"><div class="flow-label">Result</div><p>Versioned, tested data layer — the foundation the flagship builds on</p></div>
-        </div>
-        <div class="stack-line">dbt core · snowflake · airflow · github actions</div>
+    <div class="project reveal">
+      <div class="project-head">
+        <div class="project-title">Modern ELT pipeline with dbt</div>
+        <a href="https://github.com/DhruvilPanchal205/ELT-PIPELINE_DBT" class="project-link">repo →</a>
       </div>
+      <div class="flow">
+        <div class="flow-step"><div class="flow-label">Problem</div><p>Downstream models are only as trustworthy as the layer feeding them.</p></div>
+        <div class="dag-arrow"></div>
+        <div class="flow-step"><div class="flow-label">Approach</div><p>dbt Core on Snowflake, orchestrated with Airflow, tests running in CI on every pull request.</p></div>
+        <div class="dag-arrow"></div>
+        <div class="flow-step"><div class="flow-label">Result</div><p>A versioned, tested data layer: the foundation the flagship builds on.</p></div>
+      </div>
+      <div class="stack-line">dbt core · snowflake · airflow · github actions</div>
+    </div>
 
-      <div class="project reveal">
-        <div class="project-head">
-          <div class="project-title">Finance complaints classifier</div>
-          <a href="https://github.com/DhruvilPanchal205/Machine_Learning_Models" class="project-link">repo →</a>
-        </div>
-        <div class="flow">
-          <div class="flow-step"><div class="flow-label">Problem</div><p>10,000+ consumer complaints, no realistic path to labelling them by hand</p></div>
-          <div class="dag-arrow"></div>
-          <div class="flow-step"><div class="flow-label">Approach</div><p>NLP pipeline with LLM-assisted labelling, then logistic regression and random forest</p></div>
-          <div class="dag-arrow"></div>
-          <div class="flow-step"><div class="flow-label">Result</div><p>Classifier evaluated on a held-out set; labelling bottleneck removed</p></div>
-        </div>
-        <div class="metrics-row">
-          <span class="metric">85% accuracy, held-out set</span>
-          <span class="metric">10,412 records</span>
-        </div>
-        <div class="stack-line">python · scikit-learn · nlp · llm-assisted labelling</div>
+    <div class="project reveal">
+      <div class="project-head">
+        <div class="project-title">Finance complaints classifier</div>
+        <a href="https://github.com/DhruvilPanchal205/Machine_Learning_Models" class="project-link">repo →</a>
       </div>
+      <div class="flow">
+        <div class="flow-step"><div class="flow-label">Problem</div><p>10,000+ consumer complaints, no realistic path to labelling them by hand.</p></div>
+        <div class="dag-arrow"></div>
+        <div class="flow-step"><div class="flow-label">Approach</div><p>NLP pipeline with LLM-assisted labelling, then logistic regression and random forest.</p></div>
+        <div class="dag-arrow"></div>
+        <div class="flow-step"><div class="flow-label">Result</div><p>Classifier evaluated on a held-out set; the labelling bottleneck removed.</p></div>
+      </div>
+      <div class="metrics-row">
+        <span class="metric">85% accuracy, held-out set</span>
+        <span class="metric">10,412 records</span>
+      </div>
+      <div class="stack-line">python · scikit-learn · nlp · llm-assisted labelling</div>
+    </div>
 
-      <!-- ARCHIVE: four of the six original links pointed at the wrong repo.
-           Fix the repos first, then promote anything that earns it back. -->
-      <div class="archive reveal">
-        <div class="archive-label">earlier work — repos being reorganised</div>
-        <div class="archive-row">
-          <span class="archive-name">Real-time clickstream pipeline — Kafka to Redshift, sub-minute freshness</span>
-          <span class="archive-stack">kafka · spark · redshift</span>
-        </div>
-        <div class="archive-row">
-          <span class="archive-name">Adidas US sales warehouse — star schema with a Tableau layer</span>
-          <span class="archive-stack">snowflake · dbt · tableau</span>
-        </div>
-        <div class="archive-row">
-          <span class="archive-name">NYC geospatial job market analysis — spatial feature engineering</span>
-          <span class="archive-stack">geopandas · airflow · postgresql</span>
-        </div>
-        <div class="archive-row">
-          <span class="archive-name">Financial transactions ETL — daily loads with monitoring and error handling</span>
-          <span class="archive-stack">python · aws glue</span>
-        </div>
-      </div>
+    <!-- ARCHIVE: four of the six original links pointed at the wrong repo.
+         Fix the repos first, then promote anything that earns it back. -->
+    <div class="archive reveal">
+      <div class="archive-label">earlier work — repos being reorganised</div>
+      <div class="archive-row"><span class="archive-name">Real-time clickstream pipeline — Kafka to Redshift, sub-minute freshness</span><span class="archive-stack">kafka · spark · redshift</span></div>
+      <div class="archive-row"><span class="archive-name">Adidas US sales warehouse — star schema with a Tableau layer</span><span class="archive-stack">snowflake · dbt · tableau</span></div>
+      <div class="archive-row"><span class="archive-name">NYC geospatial job market analysis — spatial feature engineering</span><span class="archive-stack">geopandas · airflow · postgresql</span></div>
+      <div class="archive-row"><span class="archive-name">Financial transactions ETL — daily loads with monitoring and error handling</span><span class="archive-stack">python · aws glue</span></div>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="wrap">
-    <div class="eyebrow reveal"><span class="stage-id">03</span> · skills &amp; certifications</div>
-    <h2 class="section-title reveal d1">What I work with, and what I'm currently learning.</h2>
-
-    <div class="skills-cols reveal d2">
-      <div>
-        <div class="skill-cat">
-          <h4>semantic_layer_&amp;_agent_interfaces</h4>
-          <div class="skill-list">
-            <span class="skill-chip">Metric modelling</span>
-            <span class="skill-chip">Data contracts</span>
-            <span class="skill-chip learning">dbt MetricFlow</span>
-            <span class="skill-chip learning">MCP servers</span>
-            <span class="skill-chip learning">Eval harnesses</span>
-          </div>
-          <div class="learning-note">dashed = actively learning, not yet shipped</div>
-        </div>
-        <div class="skill-cat">
-          <h4>data_engineering</h4>
-          <div class="skill-list">
-            <span class="skill-chip">dbt</span>
-            <span class="skill-chip">Snowflake</span>
-            <span class="skill-chip">Airflow</span>
-            <span class="skill-chip">ETL / ELT design</span>
-            <span class="skill-chip">CI/CD (GitHub Actions, Docker)</span>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="skill-cat">
-          <h4>governance_&amp;_data_quality</h4>
-          <div class="skill-list">
-            <span class="skill-chip">Row/column access policies</span>
-            <span class="skill-chip">Dynamic masking</span>
-            <span class="skill-chip">Automated testing</span>
-            <span class="skill-chip">Lineage &amp; audit logging</span>
-          </div>
-        </div>
-        <div class="skill-cat">
-          <h4>analytics_&amp;_bi</h4>
-          <div class="skill-list">
-            <span class="skill-chip">SQL</span>
-            <span class="skill-chip">Python</span>
-            <span class="skill-chip">Power BI</span>
-            <span class="skill-chip">Tableau</span>
-            <span class="skill-chip">Looker</span>
-            <span class="skill-chip">A/B testing</span>
-            <span class="skill-chip">AWS</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="certs reveal d3">
-      <div class="cert-row"><span class="cert-name"><span class="dot"></span>Tableau Certified Data Analyst</span><span class="cert-issuer">Tableau</span></div>
-      <div class="cert-row"><span class="cert-name"><span class="dot"></span>Hands-On Essentials: Data Warehousing</span><span class="cert-issuer">Snowflake</span></div>
-      <div class="cert-row"><span class="cert-name"><span class="dot"></span>Entry Certificate in Business Analysis (ECBA)</span><span class="cert-issuer">IIBA</span></div>
-      <div class="cert-row"><span class="cert-name"><span class="dot"></span>Beta Gamma Sigma, lifetime member</span><span class="cert-issuer">Cleveland State</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
+<!-- ============================== EXPERIENCE ============================== -->
 <section id="experience">
   <div class="wrap">
-    <div class="eyebrow reveal"><span class="stage-id">04</span> · experience</div>
+    <div class="eyebrow reveal"><span class="stage-id">03</span> · experience</div>
     <h2 class="section-title reveal d1">Where this ran in production.</h2>
+    <p class="section-sub reveal d1">Tags show which side of the work each role leaned on: business, data, or AI.</p>
 
     <div class="track reveal d2" data-track>
       <div class="track-node">
         <div class="track-dot"></div>
         <div class="role">
-          <div class="role-top">
-            <div class="role-title">Sr. Data Analyst</div>
-            <div class="role-period">Jul 2025 — May 2026</div>
-          </div>
+          <div class="role-top"><div class="role-title">Sr. Data Analyst</div><div class="role-period">Jul 2025 — May 2026</div></div>
           <div class="role-company">Printpack · Atlanta, GA</div>
-          <!-- TODO: add one number per bullet that you can walk an interviewer
-               through. The old 40/60/30 percentages had no method behind them. -->
+          <div class="role-tags"><span class="role-tag data">data engineering</span><span class="role-tag ai">AI in BI</span><span class="role-tag biz">experimentation</span></div>
+          <!-- TODO: add one number per bullet that you can walk an interviewer through. -->
           <ul class="role-bullets">
             <li>Designed and shipped <strong>15+ dbt models</strong> with CI tests running on every pull request</li>
             <li>Built LLM summarisation into Power BI executive dashboards, replacing a recurring manual write-up</li>
             <li>Ran A/B tests in Power BI with automated anomaly detection to surface feature-impact signals</li>
-            <li>Implemented CI/CD for Snowflake via GitHub Actions, Docker, and AWS, moving releases from manual to reviewed and versioned</li>
+            <li>Implemented CI/CD for Snowflake via GitHub Actions, Docker and AWS, moving releases from manual to reviewed and versioned</li>
           </ul>
         </div>
       </div>
-
       <div class="track-node">
         <div class="track-dot"></div>
         <div class="role">
-          <div class="role-top">
-            <div class="role-title">Data Analyst</div>
-            <div class="role-period">Jun 2024 — Jul 2025</div>
-          </div>
+          <div class="role-top"><div class="role-title">Data Analyst</div><div class="role-period">Jun 2024 — Jul 2025</div></div>
           <div class="role-company">Printpack · Atlanta, GA</div>
+          <div class="role-tags"><span class="role-tag biz">sales &amp; ops reporting</span><span class="role-tag data">data quality</span></div>
           <ul class="role-bullets">
             <li>Wrote and tuned SQL against Snowflake for recurring reporting across sales and operations</li>
             <li>Built and maintained Power BI dashboards tracking weekly sales and engagement metrics</li>
@@ -833,15 +680,12 @@
           </ul>
         </div>
       </div>
-
       <div class="track-node">
         <div class="track-dot"></div>
         <div class="role">
-          <div class="role-top">
-            <div class="role-title">Data Science Intern</div>
-            <div class="role-period">Jun 2022 — Aug 2022</div>
-          </div>
+          <div class="role-top"><div class="role-title">Data Science Intern</div><div class="role-period">Jun 2022 — Aug 2022</div></div>
           <div class="role-company">ITHENA · Glen Allen, VA</div>
+          <div class="role-tags"><span class="role-tag biz">requirements</span><span class="role-tag data">compliance reporting</span></div>
           <ul class="role-bullets">
             <li>Gathered access-control reporting requirements from product owners across business units</li>
             <li>Translated those requirements into functional dashboard specifications</li>
@@ -853,13 +697,91 @@
   </div>
 </section>
 
-<!-- EDUCATION -->
+<!-- ============================== SKILLS ============================== -->
+<section id="skills">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="stage-id">04</span> · skills &amp; certifications</div>
+    <h2 class="section-title reveal d1">What I work with, and what I'm learning next.</h2>
+
+    <div class="skills-cols reveal d2" style="margin-top:30px;">
+      <div>
+        <div class="skill-cat">
+          <h4>business_analysis</h4>
+          <div class="skill-list">
+            <span class="skill-chip">Requirements gathering</span>
+            <span class="skill-chip">KPI design</span>
+            <span class="skill-chip">Stakeholder management</span>
+            <span class="skill-chip">A/B testing</span>
+            <span class="skill-chip">Process mapping</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <h4>data_engineering</h4>
+          <div class="skill-list">
+            <span class="skill-chip">dbt</span>
+            <span class="skill-chip">Snowflake</span>
+            <span class="skill-chip">Airflow</span>
+            <span class="skill-chip">Kafka</span>
+            <span class="skill-chip">Spark</span>
+            <span class="skill-chip">ETL / ELT design</span>
+            <span class="skill-chip">CI/CD (GitHub Actions, Docker)</span>
+            <span class="skill-chip">AWS</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <h4>analytics_&amp;_bi</h4>
+          <div class="skill-list">
+            <span class="skill-chip">SQL</span>
+            <span class="skill-chip">Python</span>
+            <span class="skill-chip">Power BI</span>
+            <span class="skill-chip">Tableau</span>
+            <span class="skill-chip">Looker</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="skill-cat">
+          <h4>ai_&amp;_genai</h4>
+          <div class="skill-list">
+            <span class="skill-chip">LLM APIs (OpenAI, Claude)</span>
+            <span class="skill-chip">Prompt engineering</span>
+            <span class="skill-chip">NLP classification</span>
+            <span class="skill-chip">RAG pipelines</span>
+            <span class="skill-chip learning">MCP servers</span>
+            <span class="skill-chip learning">Eval harnesses</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <h4>semantic_layer_&amp;_governance</h4>
+          <div class="skill-list">
+            <span class="skill-chip">Metric modelling</span>
+            <span class="skill-chip">Data contracts</span>
+            <span class="skill-chip">Row/column access policies</span>
+            <span class="skill-chip">Dynamic masking</span>
+            <span class="skill-chip">Lineage &amp; audit logging</span>
+            <span class="skill-chip learning">dbt MetricFlow</span>
+          </div>
+          <div class="learning-note">dashed = actively learning, not yet shipped</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="certs reveal d3">
+      <div class="cert-row"><span class="cert-name"><span class="dot"></span>Tableau Certified Data Analyst</span><span class="cert-issuer">Tableau</span></div>
+      <div class="cert-row"><span class="cert-name"><span class="dot"></span>dbt Fundamentals</span><span class="cert-issuer">dbt Labs</span></div>
+      <div class="cert-row"><span class="cert-name"><span class="dot"></span>Hands-On Essentials: Data Warehousing</span><span class="cert-issuer">Snowflake</span></div>
+      <div class="cert-row"><span class="cert-name"><span class="dot"></span>Entry Certificate in Business Analysis (ECBA)</span><span class="cert-issuer">IIBA</span></div>
+      <div class="cert-row"><span class="cert-name"><span class="dot"></span>Beta Gamma Sigma, lifetime member</span><span class="cert-issuer">Cleveland State</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== EDUCATION ============================== -->
 <section id="education">
   <div class="wrap">
     <div class="eyebrow reveal"><span class="stage-id">05</span> · education</div>
     <h2 class="section-title reveal d1">Foundations, and what I'm researching.</h2>
-
-    <div class="track reveal d2" data-track>
+    <div class="track reveal d2" data-track style="margin-top:30px;">
       <div class="track-node">
         <div class="track-dot running"></div>
         <div class="edu-node">
@@ -882,25 +804,17 @@
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ============================== CONTACT ============================== -->
 <section id="contact">
   <div class="wrap contact-grid">
     <div class="reveal">
       <div class="eyebrow"><span class="stage-id">06</span> · contact</div>
       <h2 class="section-title" style="margin-bottom:10px;">Let's work on something worth measuring.</h2>
-      <p style="font-size:14.5px;color:var(--text-soft);max-width:390px;line-height:1.7;">Open to analytics engineering roles, and happy to talk with anyone working on semantic layers or evaluating AI on governed data.</p>
-
+      <p style="font-size:14.5px;color:var(--text-soft);max-width:400px;line-height:1.7;">Open to analytics engineering, data and AI roles. Always happy to talk with anyone working on semantic layers or evaluating AI on governed data.</p>
       <div class="contact-list">
-        <div class="contact-row">
-          <span class="contact-label">Email</span>
-          <span><a href="mailto:dhrupanchal2005@gmail.com">dhrupanchal2005@gmail.com</a></span>
-        </div>
-        <div class="contact-row">
-          <span class="contact-label">Based</span>
-          <span>New York City metro · open to remote</span>
-        </div>
+        <div class="contact-row"><span class="contact-label">Email</span><span><a href="mailto:dhrupanchal2005@gmail.com">dhrupanchal2005@gmail.com</a></span></div>
+        <div class="contact-row"><span class="contact-label">Based</span><span>New York City metro · open to remote</span></div>
       </div>
-
       <div class="social-row">
         <a href="https://github.com/dhruvilpanchal205" class="social-btn">GitHub</a>
         <a href="https://www.linkedin.com/in/dhruvilpanchal/" class="social-btn">LinkedIn</a>
@@ -912,23 +826,11 @@
          arrives. Until then the form fails loudly rather than pretending. -->
     <form class="contact-card reveal d1" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
       <div class="form-row">
-        <div class="form-field">
-          <label class="form-label" for="cf-name">Name</label>
-          <input id="cf-name" name="name" type="text" class="form-input" placeholder="Your name" required>
-        </div>
-        <div class="form-field">
-          <label class="form-label" for="cf-email">Email</label>
-          <input id="cf-email" name="email" type="email" class="form-input" placeholder="you@company.com" required>
-        </div>
+        <div class="form-field"><label class="form-label" for="cf-name">Name</label><input id="cf-name" name="name" type="text" class="form-input" placeholder="Your name" required></div>
+        <div class="form-field"><label class="form-label" for="cf-email">Email</label><input id="cf-email" name="email" type="email" class="form-input" placeholder="you@company.com" required></div>
       </div>
-      <div class="form-field">
-        <label class="form-label" for="cf-subject">Subject</label>
-        <input id="cf-subject" name="subject" type="text" class="form-input" placeholder="Role, project, or question" required>
-      </div>
-      <div class="form-field">
-        <label class="form-label" for="cf-message">Message</label>
-        <textarea id="cf-message" name="message" class="form-textarea" placeholder="What are you working on?" required></textarea>
-      </div>
+      <div class="form-field"><label class="form-label" for="cf-subject">Subject</label><input id="cf-subject" name="subject" type="text" class="form-input" placeholder="Role, project, or question" required></div>
+      <div class="form-field"><label class="form-label" for="cf-message">Message</label><textarea id="cf-message" name="message" class="form-textarea" placeholder="What are you working on?" required></textarea></div>
       <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button type="submit" class="btn-send">Send message</button>
       <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
@@ -939,7 +841,7 @@
 <footer>
   <div class="footer-inner">
     <span>© 2026 Dhruvil Panchal</span>
-    <span>Analytics Engineer · NYC metro</span>
+    <span>Analytics Engineer · Business · Data · AI · NYC metro</span>
   </div>
 </footer>
 
@@ -950,36 +852,329 @@
   'use strict';
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- reveal on scroll ---------- */
+  /* =====================================================================
+     LIVE LINEAGE
+     ===================================================================== */
+  var LAYERS = ['sources', 'staging', 'marts', 'semantic', 'consume', 'evaluate'];
+  var VERBS  = ['extract', 'stage', 'build', 'compile', 'refresh', 'score'];
+  var NODES = [
+    { id:'src_crm',  L:0, t:'crm_accounts',     s:'source · crm',        sh:'crm',        d:'Customer and account records from the CRM. Where the "who is a customer" definition starts, and where most of the disagreements start too.' },
+    { id:'src_erp',  L:0, t:'erp_orders',       s:'source · erp',        sh:'erp',        d:'Order lines from the ERP, loaded incrementally. Late-arriving rows are handled in staging so reports don\'t silently change.' },
+    { id:'src_evt',  L:0, t:'click_events',     s:'source · kafka',      sh:'events',     d:'Clickstream events streamed through Kafka: the pattern from my real-time clickstream project (Kafka → Spark → Redshift).' },
+    { id:'src_cmp',  L:0, t:'complaints',       s:'source · api',        sh:'cmpl', d:'Consumer complaint records pulled via API: the input to my finance complaints classifier (10,412 records).' },
+    { id:'stg_cust', L:1, t:'stg_customers',    s:'dbt · view',          sh:'stg_cust',   d:'Light cleanup only: renames, types, de-duplication. One staging model per source, with unique and not_null tests on keys.' },
+    { id:'stg_ord',  L:1, t:'stg_orders',       s:'dbt · view',          sh:'stg_ord', d:'Standardised order lines with currency and status normalised, tested before anything downstream depends on it.' },
+    { id:'stg_evt',  L:1, t:'stg_events',       s:'spark · stream',      sh:'stg_events', d:'Spark Structured Streaming micro-batches, sessionised and de-duplicated before landing in the warehouse.' },
+    { id:'stg_cmp',  L:1, t:'stg_complaints',   s:'dbt · view',          sh:'stg_cmpl',   d:'Complaint text cleaned and normalised: the preprocessing step that makes NLP labelling reliable.' },
+    { id:'dim_cust', L:2, t:'dim_customer',     s:'dbt · table',         sh:'dim_cust',   d:'One row per customer, conformed across CRM and orders. This is where business analysis meets modelling: agreeing what a "customer" is.' },
+    { id:'fct_rev',  L:2, t:'fct_revenue',      s:'dbt · incremental',   sh:'fct_rev',    d:'One row per order line. "Revenue" is defined once here, not four different ways in four dashboards.' },
+    { id:'fct_eng',  L:2, t:'fct_engagement',   s:'dbt · incremental',   sh:'fct_eng',    d:'Sessions and feature usage. Feeds A/B test readouts and early churn signals for product and marketing.' },
+    { id:'nlp_lbl',  L:2, t:'complaint_labels', s:'python · nlp',        sh:'nlp_lbl',    d:'NLP preprocessing plus LLM-assisted labelling, then logistic regression and random forest. 85% accuracy on a held-out set.' },
+    { id:'sem',      L:3, t:'semantic_layer',   s:'metrics · rbac',      sh:'semantic',   k:'sem', d:'Metrics defined once in version control, with row/column access policies and masking enforced here, so people and AI agents get the same governed answer.' },
+    { id:'dash',     L:4, t:'exec_dashboard',   s:'power bi · llm',      sh:'dashboard',  d:'Power BI executive views built on governed metrics, with LLM-generated summaries replacing a recurring manual write-up.' },
+    { id:'agent',    L:4, t:'ai_agent',         s:'llm · mcp',           sh:'ai_agent',   k:'ai',  d:'An LLM agent that answers business questions through an MCP server. It can only query what the semantic layer exposes, and every query is audit-logged.' },
+    { id:'eval',     L:5, t:'eval_harness',     s:'accuracy · audit',    sh:'eval',       k:'ai',  d:'100+ business questions with known-correct answers, scored on execution accuracy, plus a written taxonomy of failures. My flagship project, in progress.' }
+  ];
+  var EDGES = [
+    ['src_crm','stg_cust'],['src_erp','stg_ord'],['src_evt','stg_evt'],['src_cmp','stg_cmp'],
+    ['stg_cust','dim_cust'],['stg_cust','fct_rev'],['stg_ord','fct_rev'],['stg_evt','fct_eng'],['stg_cust','fct_eng'],['stg_cmp','nlp_lbl'],
+    ['dim_cust','sem'],['fct_rev','sem'],['fct_eng','sem'],['nlp_lbl','sem'],
+    ['sem','dash'],['sem','agent'],['agent','eval']
+  ];
+
+  var NS = 'http://www.w3.org/2000/svg';
+  var svg = document.getElementById('lineage-svg');
+  var canvas = document.getElementById('lineage-canvas');
+  var panel = document.getElementById('lineage');
+  var detail = document.getElementById('node-detail');
+  var logEl = document.getElementById('run-log');
+  var pill = document.getElementById('run-pill');
+  var pillText = document.getElementById('run-pill-text');
+
+  var byId = {};
+  NODES.forEach(function (n) { n.state = 'idle'; byId[n.id] = n; });
+  var edgeObjs = EDGES.map(function (e) { return { from: byId[e[0]], to: byId[e[1]] }; });
+  var selected = null, particles = [], gParticles = null;
+
+  function mk(tag, attrs, parent) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function layerNodes(i) { return NODES.filter(function (n) { return n.L === i; }); }
+
+  function render() {
+    var W = Math.max(280, canvas.clientWidth - 8);
+    var horiz = W >= 900;
+    var H, labelW, showSub;
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    particles = [];
+
+    if (horiz) {
+      var pad = 12, gapMin = 28, top = 30, nh = 46, rg = 14, maxN = 4;
+      var nw = Math.min(158, (W - 2 * pad - 5 * gapMin) / 6);
+      var step = (W - 2 * pad - nw) / 5;
+      var blockMax = maxN * nh + (maxN - 1) * rg;
+      H = top + blockMax + pad;
+      showSub = true;
+      LAYERS.forEach(function (name, i) {
+        var arr = layerNodes(i);
+        var bh = arr.length * nh + (arr.length - 1) * rg;
+        var y0 = top + (blockMax - bh) / 2;
+        arr.forEach(function (n, j) { n.x = pad + i * step; n.y = y0 + j * (nh + rg); n.w = nw; n.h = nh; });
+        var lt = mk('text', { x: pad + i * step + 2, y: 14, 'class': 'ln-layer' }, svg);
+        lt.textContent = name;
+      });
+      labelW = nw;
+    } else {
+      var p2 = 8, gap = 7, top2 = 22, rowStep;
+      var nw2 = (W - 2 * p2 - 3 * gap) / 4;
+      showSub = nw2 >= 130;
+      var nh2 = showSub ? 44 : 34;
+      rowStep = nh2 + 40;
+      H = top2 + 5 * rowStep + nh2 + p2;
+      LAYERS.forEach(function (name, i) {
+        var arr = layerNodes(i);
+        var rw = arr.length * nw2 + (arr.length - 1) * gap;
+        var x0 = (W - rw) / 2;
+        var y = top2 + i * rowStep;
+        arr.forEach(function (n, j) { n.x = x0 + j * (nw2 + gap); n.y = y; n.w = nw2; n.h = nh2; });
+        var lt = mk('text', { x: p2, y: y - 8, 'class': 'ln-layer' }, svg);
+        lt.textContent = name;
+      });
+      labelW = nw2;
+    }
+
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.setAttribute('width', W);
+    svg.setAttribute('height', H);
+
+    var gEdges = mk('g', {}, svg);
+    gParticles = mk('g', {}, svg);
+    var gNodes = mk('g', {}, svg);
+
+    edgeObjs.forEach(function (e) {
+      var a = e.from, b = e.to, d;
+      if (horiz) {
+        var x1 = a.x + a.w, y1 = a.y + a.h / 2, x2 = b.x, y2 = b.y + b.h / 2, mx = (x1 + x2) / 2;
+        d = 'M' + x1 + ' ' + y1 + ' C' + mx + ' ' + y1 + ' ' + mx + ' ' + y2 + ' ' + x2 + ' ' + y2;
+      } else {
+        var vx1 = a.x + a.w / 2, vy1 = a.y + a.h, vx2 = b.x + b.w / 2, vy2 = b.y, my = (vy1 + vy2) / 2;
+        d = 'M' + vx1 + ' ' + vy1 + ' C' + vx1 + ' ' + my + ' ' + vx2 + ' ' + my + ' ' + vx2 + ' ' + vy2;
+      }
+      e.path = mk('path', { d: d, 'class': 'ln-edge' }, gEdges);
+      e.len = e.path.getTotalLength();
+    });
+
+    var useShort = labelW < 118;
+    NODES.forEach(function (n) {
+      var g = mk('g', { 'class': 'ln-node', tabindex: '0', role: 'button', 'aria-label': n.t + ', ' + LAYERS[n.L] + ' layer. Show lineage.' }, gNodes);
+      mk('rect', { x: n.x, y: n.y, width: n.w, height: n.h, rx: 8 }, g);
+      var cy = showSub ? n.y + 16 : n.y + n.h / 2;
+      mk('circle', { 'class': 'dot', cx: n.x + (useShort ? 9 : 11), cy: cy, r: useShort ? 3 : 3.5 }, g);
+      var t = mk('text', { 'class': 't', x: n.x + (useShort ? 17 : 20), y: cy + 4 }, g);
+      t.textContent = useShort ? n.sh : n.t;
+      if (useShort) t.setAttribute('font-size', '9.5');
+      if (showSub) {
+        var s = mk('text', { 'class': 's', x: n.x + 20, y: n.y + 33 }, g);
+        s.textContent = n.s;
+      }
+      n.g = g;
+      g.addEventListener('click', function (ev) { ev.stopPropagation(); select(n); });
+      g.addEventListener('keydown', function (ev) {
+        if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); select(n); }
+      });
+      applyClass(n);
+    });
+    applySelection();
+  }
+
+  function applyClass(n) {
+    if (!n.g) return;
+    var c = 'ln-node' + (n.k ? ' ' + n.k : '') + ' ' + n.state;
+    if (selected === n) c += ' sel';
+    if (selected && !n.inPath) c += ' dimmed';
+    n.g.setAttribute('class', c);
+  }
+  function setState(n, s) { n.state = s; applyClass(n); }
+
+  function walk(start, dir) {
+    var out = {}, stack = [start];
+    while (stack.length) {
+      var cur = stack.pop();
+      edgeObjs.forEach(function (e) {
+        var nxt = dir === 'up' ? (e.to === cur ? e.from : null) : (e.from === cur ? e.to : null);
+        if (nxt && !out[nxt.id]) { out[nxt.id] = nxt; stack.push(nxt); }
+      });
+    }
+    return out;
+  }
+
+  function select(n) {
+    selected = (selected === n) ? null : n;
+    applySelection();
+  }
+
+  function applySelection() {
+    var up = {}, down = {};
+    if (selected) { up = walk(selected, 'up'); down = walk(selected, 'down'); }
+    NODES.forEach(function (n) {
+      n.inPath = !selected || n === selected || !!up[n.id] || !!down[n.id];
+      applyClass(n);
+    });
+    edgeObjs.forEach(function (e) {
+      if (!e.path) return;
+      var on = selected && e.from.inPath && e.to.inPath &&
+        ((up[e.from.id] || e.from === selected) && (up[e.to.id] || e.to === selected) ||
+         (down[e.to.id] || e.to === selected) && (down[e.from.id] || e.from === selected));
+      e.path.setAttribute('class', 'ln-edge' + (on ? ' hot' : (selected ? ' dimmed' : '')));
+    });
+    renderDetail(up, down);
+  }
+
+  function renderDetail(up, down) {
+    if (!selected) {
+      detail.innerHTML =
+        '<div class="nd-kicker"><span class="nd-badge">how to read this</span></div>' +
+        '<div class="nd-title">sources → tested models → one governed layer → dashboards &amp; AI</div>' +
+        '<p class="nd-text">This is the shape of the systems I build. <strong>Tap any node</strong> to trace where its data comes from, where it goes, and how it connects to my real projects.</p>';
+      return;
+    }
+    var n = selected;
+    var badge = n.k === 'sem' ? 'sem' : (n.k === 'ai' ? 'ai' : '');
+    detail.innerHTML =
+      '<div class="nd-kicker"><span class="nd-badge ' + badge + '">' + LAYERS[n.L] + '</span><span>' + n.s + '</span></div>' +
+      '<div class="nd-title">' + n.t + '</div>' +
+      '<p class="nd-text">' + n.d + '</p>' +
+      '<div class="nd-meta"><span>↑ upstream: ' + Object.keys(up).length + '</span><span>↓ downstream: ' + Object.keys(down).length + '</span>' +
+      '<button class="nd-clear" type="button" id="nd-clear">clear selection</button></div>';
+    document.getElementById('nd-clear').addEventListener('click', function () { selected = null; applySelection(); });
+  }
+
+  svg.addEventListener('click', function () { if (selected) { selected = null; applySelection(); } });
+
+  /* ---- run log ---- */
+  function pad2(x) { return (x < 10 ? '0' : '') + x; }
+  function now() { var d = new Date(); return pad2(d.getHours()) + ':' + pad2(d.getMinutes()) + ':' + pad2(d.getSeconds()); }
+  function log(html, dur) {
+    var line = document.createElement('div');
+    line.className = 'log-line';
+    line.innerHTML = '<span class="ts">' + now() + '</span>' + html + (dur ? '<span class="dur">' + dur + '</span>' : '');
+    logEl.appendChild(line);
+    var lines = logEl.querySelectorAll('.log-line');
+    if (lines.length > 6) logEl.removeChild(lines[0]);
+  }
+
+  /* ---- particles ---- */
+  function spawn(e) {
+    if (reduced || !e.path || !gParticles) return;
+    var c = mk('circle', { r: 2.6, 'class': 'ln-particle', cx: -10, cy: -10 }, gParticles);
+    particles.push({ c: c, e: e, t: 0, dur: 850 + Math.random() * 500 });
+  }
+  var lastTs = 0;
+  function frame(ts) {
+    var dt = lastTs ? Math.min(64, ts - lastTs) : 16;
+    lastTs = ts;
+    for (var i = particles.length - 1; i >= 0; i--) {
+      var p = particles[i];
+      p.t += dt / p.dur;
+      if (p.t >= 1 || !p.e.path.isConnected) { if (p.c.parentNode) p.c.parentNode.removeChild(p.c); particles.splice(i, 1); continue; }
+      var pt = p.e.path.getPointAtLength(p.t * p.e.len);
+      p.c.setAttribute('cx', pt.x); p.c.setAttribute('cy', pt.y);
+      p.c.setAttribute('opacity', Math.min(1, Math.min(p.t, 1 - p.t) * 6));
+    }
+    requestAnimationFrame(frame);
+  }
+
+  /* ---- simulated run loop ---- */
+  var visible = true, runNo = 1184, ambient = false, lastDone = 0;
+  function setPill(state) {
+    pill.className = 'run-pill ' + state;
+    if (state === 'running') pillText.textContent = 'run #' + runNo + ' · running';
+  }
+  setInterval(function () {
+    if (pill.className.indexOf('success') !== -1) {
+      var s = Math.round((Date.now() - lastDone) / 1000);
+      pillText.textContent = 'run #' + runNo + ' · success · ' + (s < 2 ? 'just now' : s + 's ago');
+    }
+  }, 1000);
+  setInterval(function () {
+    if (!ambient || !visible || reduced) return;
+    spawn(edgeObjs[Math.floor(Math.random() * edgeObjs.length)]);
+  }, 420);
+
+  var STEP = 1100;
+  function runCycle() {
+    if (!visible) { setTimeout(runCycle, 1500); return; }
+    runNo++; ambient = false;
+    NODES.forEach(function (n) { setState(n, 'idle'); });
+    setPill('running');
+    log('<span class="cmd">▶ dbt build --select +eval_harness</span>');
+    LAYERS.forEach(function (_, i) {
+      setTimeout(function () { layerNodes(i).forEach(function (n) { setState(n, 'running'); }); }, 300 + i * STEP);
+      setTimeout(function () {
+        layerNodes(i).forEach(function (n) {
+          setState(n, 'done');
+          edgeObjs.forEach(function (e) { if (e.from === n) { spawn(e); setTimeout(function () { spawn(e); }, 200); } });
+        });
+        var names = layerNodes(i).map(function (n) { return n.t; });
+        log('<span class="ok">✓</span> ' + VERBS[i] + ' ' + (names.length > 1 ? names.length + ' ' + LAYERS[i] + ' nodes' : names[0]),
+            (0.4 + Math.random() * 1.8).toFixed(2) + 's');
+        if (i === 2) log('<span class="ok">✓</span> tests: unique · not_null · relationships');
+        if (i === 3) log('<span class="ok">✓</span> access policies + masking applied');
+      }, 300 + i * STEP + 750);
+    });
+    setTimeout(function () {
+      lastDone = Date.now();
+      pill.className = 'run-pill success';
+      pillText.textContent = 'run #' + runNo + ' · success · just now';
+      log('<span class="ok">● run complete · 16/16 nodes</span>');
+      ambient = true;
+    }, 300 + LAYERS.length * STEP + 400);
+    setTimeout(runCycle, 300 + LAYERS.length * STEP + 7000);
+  }
+
+  render();
+  var rt;
+  window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(render, 150); }, { passive: true });
+
+  if (reduced) {
+    NODES.forEach(function (n) { setState(n, 'done'); });
+    pill.className = 'run-pill success';
+    pillText.textContent = 'pipeline · all nodes built';
+    log('<span class="ok">✓</span> 16/16 nodes built · tests passed');
+  } else {
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { visible = en[0].isIntersecting && !document.hidden; }, { threshold: 0.05 }).observe(panel);
+    }
+    document.addEventListener('visibilitychange', function () { if (document.hidden) visible = false; });
+    requestAnimationFrame(frame);
+    setTimeout(runCycle, 500);
+  }
+
+  /* =====================================================================
+     PAGE BEHAVIOUR (reveal, progress, nav, mobile menu, form)
+     ===================================================================== */
   var revealEls = document.querySelectorAll('.reveal');
   if (reduced || !('IntersectionObserver' in window)) {
     Array.prototype.forEach.call(revealEls, function (el) { el.classList.add('in'); });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-track]'), function (el) { el.classList.add('lit'); });
   } else {
     var revealObs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          revealObs.unobserve(e.target); // fire once; never re-animate on scroll-back
-        }
-      });
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
     }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
     Array.prototype.forEach.call(revealEls, function (el) { revealObs.observe(el); });
-
-    /* timeline spine fills when its section arrives */
     var trackObs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('lit'); trackObs.unobserve(e.target); }
-      });
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('lit'); trackObs.unobserve(e.target); } });
     }, { threshold: 0.15 });
     Array.prototype.forEach.call(document.querySelectorAll('[data-track]'), function (el) { trackObs.observe(el); });
   }
 
-  /* ---------- scroll progress, header state, back to top ---------- */
   var bar = document.getElementById('progress-bar');
   var header = document.getElementById('site-header');
   var toTop = document.getElementById('to-top');
   var ticking = false;
-
   function onScroll() {
     var st = window.scrollY || document.documentElement.scrollTop;
     var h = document.documentElement.scrollHeight - window.innerHeight;
@@ -988,18 +1183,11 @@
     toTop.classList.toggle('show', st > 620);
     ticking = false;
   }
-  /* rAF-throttled so scrolling stays smooth on lower-powered laptops */
-  window.addEventListener('scroll', function () {
-    if (!ticking) { window.requestAnimationFrame(onScroll); ticking = true; }
-  }, { passive: true });
+  window.addEventListener('scroll', function () { if (!ticking) { requestAnimationFrame(onScroll); ticking = true; } }, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
   onScroll();
+  toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' }); });
 
-  toTop.addEventListener('click', function () {
-    window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
-  });
-
-  /* ---------- active section in nav ---------- */
   var navLinks = document.querySelectorAll('#desktop-nav a, #mobile-menu a');
   var sections = document.querySelectorAll('section[id]');
   if ('IntersectionObserver' in window) {
@@ -1007,15 +1195,12 @@
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
         var id = e.target.getAttribute('id');
-        Array.prototype.forEach.call(navLinks, function (a) {
-          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
-        });
+        Array.prototype.forEach.call(navLinks, function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + id); });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     Array.prototype.forEach.call(sections, function (s) { navObs.observe(s); });
   }
 
-  /* ---------- mobile menu ---------- */
   var menuBtn = document.getElementById('menu-btn');
   var mobileMenu = document.getElementById('mobile-menu');
   menuBtn.addEventListener('click', function () {
@@ -1031,42 +1216,29 @@
     });
   });
 
-  /* ---------- contact form ---------- */
   var form = document.getElementById('contact-form');
   var statusEl = document.getElementById('form-status');
-
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-
     if (form.action.indexOf('YOUR_FORM_ID') !== -1) {
       statusEl.className = 'form-status err';
       statusEl.textContent = 'Form not connected yet — please email dhrupanchal2005@gmail.com directly.';
       return;
     }
-
     var btn = form.querySelector('.btn-send');
     var original = btn.textContent;
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
-    statusEl.textContent = '';
-    statusEl.className = 'form-status';
-
-    fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { Accept: 'application/json' }
-    }).then(function (res) {
-      if (!res.ok) throw new Error('status ' + res.status);
-      statusEl.className = 'form-status ok';
-      statusEl.textContent = 'Sent. I usually reply within a day or two.';
-      form.reset();
-    }).catch(function () {
-      statusEl.className = 'form-status err';
-      statusEl.textContent = 'That did not send. Please email dhrupanchal2005@gmail.com instead.';
-    }).then(function () {
-      btn.disabled = false;
-      btn.textContent = original;
-    });
+    btn.disabled = true; btn.textContent = 'Sending...';
+    statusEl.textContent = ''; statusEl.className = 'form-status';
+    fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+      .then(function (res) {
+        if (!res.ok) throw new Error('status ' + res.status);
+        statusEl.className = 'form-status ok';
+        statusEl.textContent = 'Sent. I usually reply within a day or two.';
+        form.reset();
+      }).catch(function () {
+        statusEl.className = 'form-status err';
+        statusEl.textContent = 'That did not send. Please email dhrupanchal2005@gmail.com instead.';
+      }).then(function () { btn.disabled = false; btn.textContent = original; });
   });
 })();
 </script>
